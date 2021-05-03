@@ -214,11 +214,11 @@ namespace Contatos
                     Console.WriteLine("\nInforme um endereço de E-mail: ");
                     string email = Console.ReadLine();
 
-                    Console.WriteLine("\nInforme um número para contato: ");
-                    string cel = Console.ReadLine();
+                    Console.WriteLine("\nInforme um número para contato (APENAS NÚMEROS): ");
+                    int cel = int.Parse(lerNumeros());
 
                     // CHAMADA DO MÉTODO
-                    Cadastrar(nome, email, cel);
+                    Cadastrar(nome, email, cel.ToString());
                 }
                 else if (op == "0")
                 {
@@ -503,6 +503,36 @@ namespace Contatos
                 eita = true;
             }
             return eita;
+        }
+
+        // MÉTODO QUE PERMITE APENAS NÚMEROS NO CELULAR
+        public static string lerNumeros()
+        {
+            ConsoleKeyInfo cki;
+            string entrada = "";
+            while (true)
+                if (Console.KeyAvailable)
+                {
+                    cki = Console.ReadKey(true);
+                    if (cki.Key == ConsoleKey.Backspace)
+                    {
+                        if (entrada.Length == 0) continue;
+                        entrada = entrada.Remove(entrada.Length - 1);
+                        Console.Write("\b \b"); //Remove o último caractere digitado
+                    }
+                    if (cki.Key == ConsoleKey.Enter)
+                    {
+                        break;
+                    }
+                    if ((ConsoleKey.D0 <= cki.Key) && (cki.Key <= ConsoleKey.D9) ||
+                        (ConsoleKey.NumPad0 <= cki.Key) && (cki.Key <= ConsoleKey.NumPad9))
+                    {
+                        entrada += cki.KeyChar;
+                        Console.Write(cki.KeyChar);
+                    }
+
+                }
+            return entrada;
         }
     }
 }
