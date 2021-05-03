@@ -1,0 +1,12 @@
+C:\Users\maias\Desktop\CODES\C#\Contatos\Contatos\bin\Debug\Contatos.exe.config
+C:\Users\maias\Desktop\CODES\C#\Contatos\Contatos\bin\Debug\Contatos.exe
+C:\Users\maias\Desktop\CODES\C#\Contatos\Contatos\bin\Debug\Contatos.pdb
+C:\Users\maias\Desktop\CODES\C#\Contatos\Contatos\obj\Debug\Contatos.csprojResolveAssemblyReference.cache
+C:\Users\maias\Desktop\CODES\C#\Contatos\Contatos\obj\Debug\Contatos.exe
+C:\Users\maias\Desktop\CODES\C#\Contatos\Contatos\obj\Debug\Contatos.pdb
+C:\Users\maias\Desktop\CODES\C#\Console\Contatos\Contatos\bin\Debug\Contatos.exe.config
+C:\Users\maias\Desktop\CODES\C#\Console\Contatos\Contatos\obj\Debug\Contatos.exe
+C:\Users\maias\Desktop\CODES\C#\Console\Contatos\Contatos\obj\Debug\Contatos.pdb
+C:\Users\maias\Desktop\CODES\C#\Console\Contatos\Contatos\bin\Debug\Contatos.exe
+C:\Users\maias\Desktop\CODES\C#\Console\Contatos\Contatos\bin\Debug\Contatos.pdb
+C:\Users\maias\Desktop\CODES\C#\Console\Contatos\Contatos\obj\Debug\Contatos.csprojResolveAssemblyReference.cache
