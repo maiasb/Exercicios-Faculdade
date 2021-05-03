@@ -28,7 +28,7 @@ namespace Contatos
 
                 op = Console.ReadLine();
 
-                // CONDIÇÃO PARA MENU DE BUSCAR CONTATOS ---------------------------------------------------------------------------------------------
+                // CONDIÇÃO PARA MENU DE BUSCAR CONTATOS -----------------------------------------------------------------------------------------------------------------------------
                 if (op == "1")
                 {
                     // LAÇO PARA O SEGUNDO MENU (BUSCAR TODOS OU ESPECÍFICO)
@@ -92,7 +92,15 @@ namespace Contatos
                                             Console.WriteLine("\nEditar celular: ");
                                             string cel = Console.ReadLine();
 
-                                            Editar(Convert.ToInt32(ID), nome, email, cel);
+                                            if (!num(cel) || cel.Length < 8)
+                                            {
+                                                Console.WriteLine("\n\nCelular inválido!!");
+                                                Console.ReadLine();
+                                            }
+                                            else
+                                            {
+                                                Editar(Convert.ToInt32(ID), nome, email, cel);
+                                            }
                                         }
                                         else
                                         {
@@ -112,7 +120,7 @@ namespace Contatos
                                     }
                                 }
 
-                                // CONDIÇÃO PARA DELETAR CONTATO ---------------------------------------------------- (PERGUNTA SE QUER DELETAR UM CONTATO QUE NÃO EXISTE)
+                                // CONDIÇÃO PARA DELETAR CONTATO
                                 else if (op3 == "del")
                                 {
                                     Console.Clear();
@@ -128,10 +136,14 @@ namespace Contatos
                                         Console.WriteLine("\nComando inválido.");
                                         Console.ReadLine();
                                     }
-                                    else if (num(ID))
+                                    else if (num(ID) && BuscarIDD(Convert.ToInt32(ID)))
                                     {
-                                        Console.WriteLine("\nY: sim");
-                                        Console.WriteLine("N: não");
+                                        Console.Clear();
+                                        BuscarID(Convert.ToInt32(ID));
+                                        Console.WriteLine("\n\n---------------DELETAR---------------");
+                                        Console.WriteLine("\nEssa viagem é realmente necessária?");
+                                        Console.WriteLine("\nY: Claro que é necessária. Eu sou o diabo necessário.");
+                                        Console.WriteLine("\nN: Não");
                                         string con = Console.ReadLine();
 
                                         if (con == "Y" || con == "y")
@@ -152,6 +164,14 @@ namespace Contatos
                                     else if (ID == "cancel")
                                     {
                                         op3 = "cancel";
+                                    }
+                                    else if (num(ID))
+                                    {
+                                        if (!BuscarIDD(Convert.ToInt32(ID)))
+                                        {
+                                            Console.WriteLine("\nID inválido.");
+                                            Console.ReadLine();
+                                        }
                                     }
                                     else
                                     {
@@ -203,7 +223,7 @@ namespace Contatos
                     } while (op2 != "0");
                 }
 
-                // CONDIÇÃO PARA CADASTRAR NOVO CONTATO --------------------------------------------------------------------------------------
+                // CONDIÇÃO PARA CADASTRAR NOVO CONTATO ------------------------------------------------------------------------------------------------------------------------------
                 else if (op == "2")
                 {
                     Console.Clear();
@@ -215,10 +235,19 @@ namespace Contatos
                     string email = Console.ReadLine();
 
                     Console.WriteLine("\nInforme um número para contato (APENAS NÚMEROS): ");
-                    int cel = int.Parse(lerNumeros());
+                    //int cel = int.Parse(lerNumeros());
+                    string cel = Console.ReadLine();
+                    if (!num(cel) || cel.Length < 8)
+                    {
+                        Console.WriteLine("\n\nNúmero inválido!!");
+                        Console.ReadLine();
+                    }
+                    else
+                    {
+                        // CHAMADA DO MÉTODO
+                        Cadastrar(nome, email, cel.ToString());
+                    }
 
-                    // CHAMADA DO MÉTODO
-                    Cadastrar(nome, email, cel.ToString());
                 }
                 else if (op == "0")
                 {
@@ -295,6 +324,46 @@ namespace Contatos
             }
         }
 
+        // VALIDAR ID PARA DELEÇÃO
+        public static bool BuscarIDD(int ID)
+        {
+            // DEFININDO A CONEXÃO COM O SERVIDOR
+            SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-0S0H478\SQLEXPRESS;Initial Catalog=DBProva;Integrated Security=True");
+            bool eita = false;
+
+            try
+            {
+                // CHARAMA DE STORED PROCEDURE
+                SqlCommand com = new SqlCommand("spBuscarID", conn);
+                com.CommandType = CommandType.StoredProcedure;
+
+                // ATRIBUIÇÃO DE PARÂMETROS E ENTRADA E SAÍDA
+                com.Parameters.AddWithValue("@ID", ID);
+                com.Parameters.Add("@MSG", SqlDbType.VarChar, 100).Direction = ParameterDirection.Output;
+
+                // ABRIR CONEXÃO COM O SERVIDOR
+                conn.Open();
+
+                com.ExecuteNonQuery();
+                string mensagem = com.Parameters["@MSG"].Value.ToString();
+                conn.Close();
+
+                if (mensagem == "")
+                {
+                    eita = true;
+                }
+
+                return eita;
+            }
+            catch (Exception ex)
+            {
+                string mensagem = "erro";
+                Console.WriteLine(mensagem + ex);
+                Console.ReadLine();
+                return eita;
+            }
+        }
+
         // MÉTODO PARA BUSCAR CONTATO ESPECÍFICO
         public static void Buscar(string nome, string email, string cel)
         {
@@ -318,7 +387,6 @@ namespace Contatos
                 SqlDataReader dr = com.ExecuteReader();
                 Console.Clear();
 
-                Console.WriteLine("\nResultado da busca:\n");
                 // LEITURA DOS DADOS
                 while (dr.Read())
                 {
@@ -339,11 +407,11 @@ namespace Contatos
 
                 if (mensagem != "")
                 {
-                    Console.WriteLine(mensagem);
+                    Console.WriteLine("\n" + mensagem);
                 }
                 Console.ReadLine();
                 conn.Close();
-                
+
             }
             catch (Exception ex)
             {
@@ -506,33 +574,33 @@ namespace Contatos
         }
 
         // MÉTODO QUE PERMITE APENAS NÚMEROS NO CELULAR
-        public static string lerNumeros()
-        {
-            ConsoleKeyInfo cki;
-            string entrada = "";
-            while (true)
-                if (Console.KeyAvailable)
-                {
-                    cki = Console.ReadKey(true);
-                    if (cki.Key == ConsoleKey.Backspace)
-                    {
-                        if (entrada.Length == 0) continue;
-                        entrada = entrada.Remove(entrada.Length - 1);
-                        Console.Write("\b \b"); //Remove o último caractere digitado
-                    }
-                    if (cki.Key == ConsoleKey.Enter)
-                    {
-                        break;
-                    }
-                    if ((ConsoleKey.D0 <= cki.Key) && (cki.Key <= ConsoleKey.D9) ||
-                        (ConsoleKey.NumPad0 <= cki.Key) && (cki.Key <= ConsoleKey.NumPad9))
-                    {
-                        entrada += cki.KeyChar;
-                        Console.Write(cki.KeyChar);
-                    }
+        //public static string lerNumeros(int a)
+        //{
+        //    ConsoleKeyInfo cki;
+        //    string entrada = "";
+        //    while (true)
+        //        if (Console.KeyAvailable)
+        //        {
+        //            cki = Console.ReadKey(true);
+        //            if (cki.Key == ConsoleKey.Backspace)
+        //            {
+        //                if (entrada.Length == 0) continue;
+        //                entrada = entrada.Remove(entrada.Length - 1);
+        //                Console.Write("\b \b"); //Remove o último caractere digitado
+        //            }
+        //            if (cki.Key == ConsoleKey.Enter)
+        //            {
+        //                break;
+        //            }
+        //            if ((ConsoleKey.D0 <= cki.Key) && (cki.Key <= ConsoleKey.D9) ||
+        //                (ConsoleKey.NumPad0 <= cki.Key) && (cki.Key <= ConsoleKey.NumPad9))
+        //            {
+        //                entrada += cki.KeyChar;
+        //                Console.Write(cki.KeyChar);
+        //            }
 
-                }
-            return entrada;
-        }
+        //        }
+        //    return entrada;
+        //}
     }
 }

@@ -1,0 +1,12 @@
+CREATE PROCEDURE spDelContato
+
+	@ID INT,
+		@MSG VARCHAR (50) OUTPUT
+
+AS
+BEGIN
+
+	DELETE FROM CONTATOS WHERE ID = @ID
+	SET @MSG = 'Contato excluído.'
+
+END
