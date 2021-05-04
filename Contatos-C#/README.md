@@ -4,7 +4,7 @@ No repositório "sql" possuem os comandos para criar as Stored Procedures necess
 - Abra o seu shell e execute o comando a seguir:
 sqlcmd -S "localhost" -U SeuLoginSql -P SUaSenha -Q "CREATE DATABASE DBProva"
 
-- Abra o MSSQL, press: Ctrl + O para abrir um novo arquivo. Busque o repositório sql e abra o arquivo para criar a tabela. Feito isso, pressione a tecla "F5" para executar a query.
+- Abra o MSSQL, press: Ctrl + O para abrir um novo arquivo. Busque o repositório sql e abra o arquivo para criar a tabela (qCreateTable). Feito isso, pressione a tecla "F5" para executar a query.
 Obs: Verifique se o banco de dados corresponde ao desejado.
 
 Faça o mesmo para todos os arquivos seguintes.
