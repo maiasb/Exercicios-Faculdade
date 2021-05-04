@@ -9,16 +9,16 @@ AS
 BEGIN
 
 	IF EXISTS (SELECT * FROM CONTATOS WHERE EMAIL = @EMAIL)
-	BEGIN
-	SET @MSG = 'E-mail já cadastrado.'
-	RETURN
+		BEGIN
+			SET @MSG = 'E-mail já cadastrado.'
+		RETURN
 	END
 
 	ELSE
-	BEGIN
-	INSERT INTO CONTATOS (NOME, EMAIL, CEL) VALUES (@NOME, @EMAIL, @CEL)
-	SET @MSG = 'Contato cadastrado.'
-	RETURN
+		BEGIN
+			INSERT INTO CONTATOS (NOME, EMAIL, CEL) VALUES (@NOME, @EMAIL, @CEL)
+			SET @MSG = 'Contato cadastrado.'
+		RETURN
 	END
 
 END
