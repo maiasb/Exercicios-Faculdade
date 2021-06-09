@@ -103,5 +103,102 @@ namespace Contatos
                 Console.ReadLine();
             }
         }
+
+        public void getDadosAll()
+        {
+            // DECLARA CONEXÃO COM O SERVIDOR
+            SqlConnection conn = new SqlConnection(@"Data Source=RAYDESOL\SQLEXPRESS;Initial Catalog=DBProva;User ID=sa;Password=L3i4mais");
+
+            try
+            {
+                // CHAMADA DE STORED PROCEDURE + CONEXÃO
+                SqlCommand com = new SqlCommand("spBuscarTudo".ToString(), conn);
+                com.CommandType = CommandType.StoredProcedure;
+
+                // INICIA CONEXÃO
+                conn.Open();
+                SqlDataReader dr = com.ExecuteReader();
+
+                // LEITURA DOS DADOS
+                while (dr.Read())
+                {
+                    Console.WriteLine("\nID: " + dr["ID"].ToString());
+                    Console.WriteLine("\nNome: " + dr["NOME"].ToString());
+                    Console.WriteLine("\nE-mail: " + dr["EMAIL"].ToString());
+                    Console.WriteLine("\nCelular: " + dr["CEL"].ToString());
+                    Console.WriteLine("\n----------------------------------------------");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("erro" + ex);
+                Console.ReadLine();
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public void updtDados(int ID, string nome, string email, string cel)
+        {
+            SqlConnection conn = new SqlConnection(@"Data Source=RAYDESOL\SQLEXPRESS;Initial Catalog=DBProva;User ID=sa;Password=L3i4mais");
+
+            try
+            {
+                SqlCommand com = new SqlCommand("spEditarContato", conn);
+                com.CommandType = CommandType.StoredProcedure;
+
+                com.Parameters.AddWithValue("@ID", ID);
+                com.Parameters.AddWithValue("@NOME", nome);
+                com.Parameters.AddWithValue("@EMAIL", email);
+                com.Parameters.AddWithValue("@CEL", cel);
+                com.Parameters.Add("@MSG", SqlDbType.VarChar, 100).Direction = ParameterDirection.Output;
+
+                conn.Open();
+                com.ExecuteNonQuery();
+
+                string mensagem = com.Parameters["@MSG"].Value.ToString();
+
+                conn.Close();
+
+                Console.WriteLine("\n\n");
+                Console.WriteLine(mensagem);
+                Console.ReadLine();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("erro" + ex);
+                Console.ReadLine();
+            }
+        }
+
+        public void delDados(int ID)
+        {
+            SqlConnection conn = new SqlConnection(@"Data Source=RAYDESOL\SQLEXPRESS;Initial Catalog=DBProva;User ID=sa;Password=L3i4mais");
+
+            try
+            {
+                SqlCommand com = new SqlCommand("spDelContato", conn);
+                com.CommandType = CommandType.StoredProcedure;
+
+                com.Parameters.AddWithValue("@ID", ID);
+                com.Parameters.Add("@MSG", SqlDbType.VarChar, 100).Direction = ParameterDirection.Output;
+
+                conn.Open();
+                com.ExecuteNonQuery();
+                string mensagem = com.Parameters["@MSG"].Value.ToString();
+
+                Console.WriteLine("\n");
+                Console.WriteLine(mensagem);
+
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erro" + ex);
+                Console.ReadLine();
+            }
+        }
     }
 }

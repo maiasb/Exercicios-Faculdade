@@ -37,5 +37,23 @@ namespace Contatos
             Connect connect = new Connect();
             connect.getDados(nome, email, cel);
         }
+
+        public void getDadosAll()
+        {
+            Connect connect = new Connect();
+            connect.getDadosAll();
+        }
+
+        public void updtDados(int ID, string nome, string email, string cel)
+        {
+            Connect connect = new Connect();
+            connect.updtDados(ID, nome, email, cel);
+        }
+
+        public void delDados(int ID)
+        {
+            Connect connect = new Connect();
+            connect.delDados(ID);
+        }
     }
 }

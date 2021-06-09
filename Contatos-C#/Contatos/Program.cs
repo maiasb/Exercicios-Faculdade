@@ -51,7 +51,7 @@ namespace Contatos
 
                             do
                             { // CHAMADA DO MÉTODO PARA BUSCAR TUDO
-                                BuscarTudo();
+                                visita.getDadosAll();
 
                                 Console.WriteLine("\nDigite <0> para RETORNAR AO MENU ANTERIOR...");
                                 Console.WriteLine("\nDigite <edit> para editar um contato...");
@@ -63,7 +63,7 @@ namespace Contatos
                                 {
                                     Console.Clear();
 
-                                    BuscarTudo();
+                                    visita.getDadosAll();
 
                                     Console.WriteLine("\nSelecione um ID: ");
                                     Console.WriteLine("\nDigite <cancel> para cancelar edição: ");
@@ -100,7 +100,7 @@ namespace Contatos
                                             }
                                             else
                                             {
-                                                Editar(Convert.ToInt32(ID), nome, email, cel);
+                                                visita.updtDados(Convert.ToInt32(ID), nome, email, cel);
                                             }
                                         }
                                         else
@@ -126,7 +126,7 @@ namespace Contatos
                                 {
                                     Console.Clear();
 
-                                    BuscarTudo();
+                                    visita.getDadosAll();
 
                                     Console.WriteLine("\nSelecione um ID: ");
                                     Console.WriteLine("\nDigite <cancel> para cancelar edição: ");
@@ -149,7 +149,7 @@ namespace Contatos
 
                                         if (con == "Y" || con == "y")
                                         {
-                                            Deletar(Convert.ToInt32(ID));
+                                            visita.delDados(Convert.ToInt32(ID));
                                             Console.ReadLine();
                                         }
                                         else if (con == "N" || con == "n")
@@ -362,106 +362,6 @@ namespace Contatos
                 Console.WriteLine(mensagem + ex);
                 Console.ReadLine();
                 return eita;
-            }
-        }
-
-        //MÉTODO PARA BUSCAR TODOS OS CONTATOS
-        public static void BuscarTudo()
-        {
-            // DECLARA CONEXÃO COM O SERVIDOR
-            SqlConnection conn = new SqlConnection(@"Data Source=RAYDESOL\SQLEXPRESS;Initial Catalog=DBProva;User ID=sa;Password=L3i4mais");
-
-            try
-            {
-                // CHAMADA DE STORED PROCEDURE + CONEXÃO
-                SqlCommand com = new SqlCommand("spBuscarTudo".ToString(), conn);
-                com.CommandType = CommandType.StoredProcedure;
-
-                // INICIA CONEXÃO
-                conn.Open();
-                SqlDataReader dr = com.ExecuteReader();
-
-                // LEITURA DOS DADOS
-                while (dr.Read())
-                {
-                    Console.WriteLine("\nID: " + dr["ID"].ToString());
-                    Console.WriteLine("\nNome: " + dr["NOME"].ToString());
-                    Console.WriteLine("\nE-mail: " + dr["EMAIL"].ToString());
-                    Console.WriteLine("\nCelular: " + dr["CEL"].ToString());
-                    Console.WriteLine("\n----------------------------------------------");
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("erro" + ex);
-                Console.ReadLine();
-            }
-            finally
-            {
-                conn.Close();
-            }
-        }
-
-        // MÉTODO PARA EDITAR UM CONTATO (MENU PEINCIPAL)
-        public static void Editar(int ID, string nome, string email, string cel)
-        {
-            SqlConnection conn = new SqlConnection(@"Data Source=RAYDESOL\SQLEXPRESS;Initial Catalog=DBProva;User ID=sa;Password=L3i4mais");
-
-            try
-            {
-                SqlCommand com = new SqlCommand("spEditarContato", conn);
-                com.CommandType = CommandType.StoredProcedure;
-
-                com.Parameters.AddWithValue("@ID", ID);
-                com.Parameters.AddWithValue("@NOME", nome);
-                com.Parameters.AddWithValue("@EMAIL", email);
-                com.Parameters.AddWithValue("@CEL", cel);
-                com.Parameters.Add("@MSG", SqlDbType.VarChar, 100).Direction = ParameterDirection.Output;
-
-                conn.Open();
-                com.ExecuteNonQuery();
-
-                string mensagem = com.Parameters["@MSG"].Value.ToString();
-
-                conn.Close();
-
-                Console.WriteLine("\n\n");
-                Console.WriteLine(mensagem);
-                Console.ReadLine();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("erro" + ex);
-                Console.ReadLine();
-            }
-        }
-
-        // MÉTODO PARA DELETAR CONTATO
-        public static void Deletar(int ID)
-        {
-            SqlConnection conn = new SqlConnection(@"Data Source=RAYDESOL\SQLEXPRESS;Initial Catalog=DBProva;User ID=sa;Password=L3i4mais");
-
-            try
-            {
-                SqlCommand com = new SqlCommand("spDelContato", conn);
-                com.CommandType = CommandType.StoredProcedure;
-
-                com.Parameters.AddWithValue("@ID", ID);
-                com.Parameters.Add("@MSG", SqlDbType.VarChar, 100).Direction = ParameterDirection.Output;
-
-                conn.Open();
-                com.ExecuteNonQuery();
-                string mensagem = com.Parameters["@MSG"].Value.ToString();
-
-                Console.WriteLine("\n");
-                Console.WriteLine(mensagem);
-
-                conn.Close();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Erro" + ex);
-                Console.ReadLine();
             }
         }
 
