@@ -20,5 +20,22 @@ namespace Contatos
             this.cel = string.Empty;
             this.mensagem = string.Empty;
         }
+
+        public void setDados(string nome, string email, string cel)
+        {
+            Connect connect = new Connect();
+
+            this.nome = nome;
+            this.email = email;
+            this.cel = cel;
+
+            connect.setDados(this.nome, this.email, this.cel);
+        }
+
+        public void getDados(string nome, string email, string cel)
+        {
+            Connect connect = new Connect();
+            connect.getDados(nome, email, cel);
+        }
     }
 }

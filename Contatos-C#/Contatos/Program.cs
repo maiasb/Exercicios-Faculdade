@@ -14,7 +14,8 @@ namespace Contatos
         // INÍCIO
         static void Main(string[] args)
         {
-            // VARIÁVEIS / OPERADORES PARA CONDIÇÕES
+            // VARIÁVEIS / OPERADORES PARA CONDIÇÕES / Instância de objeto
+            Visita visita = new Visita();
             Console.Clear();
             string op;
             string op2;
@@ -207,7 +208,7 @@ namespace Contatos
                             string cel = Console.ReadLine();
 
                             // CHAMADA DO MÉTODO
-                            Buscar(nome, email, cel);
+                            visita.getDados(nome, email, cel);
 
                             Console.Clear();
                         }
@@ -245,7 +246,7 @@ namespace Contatos
                     else
                     {
                         // CHAMADA DO MÉTODO
-                        Cadastrar(nome, email, cel.ToString());
+                        visita.setDados(nome, email, cel.ToString());
                     }
 
                 }
@@ -276,7 +277,7 @@ namespace Contatos
         public static string BuscarID(int ID)
         {
             // DEFININDO A CONEXÃO COM O SERVIDOR
-            SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-0S0H478\SQLEXPRESS;Initial Catalog=DBProva;Integrated Security=True");
+            SqlConnection conn = new SqlConnection(@"Data Source=RAYDESOL\SQLEXPRESS;Initial Catalog=DBProva;User ID=sa;Password=L3i4mais");
 
             try
             {
@@ -328,7 +329,7 @@ namespace Contatos
         public static bool BuscarIDD(int ID)
         {
             // DEFININDO A CONEXÃO COM O SERVIDOR
-            SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-0S0H478\SQLEXPRESS;Initial Catalog=DBProva;Integrated Security=True");
+            SqlConnection conn = new SqlConnection(@"Data Source=RAYDESOL\SQLEXPRESS;Initial Catalog=DBProva;User ID=sa;Password=L3i4mais");
             bool eita = false;
 
             try
@@ -364,67 +365,11 @@ namespace Contatos
             }
         }
 
-        // MÉTODO PARA BUSCAR CONTATO ESPECÍFICO
-        public static void Buscar(string nome, string email, string cel)
-        {
-            // DECLARA CONEXÃO COM O SERVIDOR
-            SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-0S0H478\SQLEXPRESS;Initial Catalog=DBProva;Integrated Security=True");
-
-            try
-            {
-                // CHAMADA DE STORED PROCEDURE + CONEXÃO
-                SqlCommand com = new SqlCommand("spBuscarContato".ToString(), conn);
-                com.CommandType = CommandType.StoredProcedure;
-
-                // ADICIONANDO PARÂMETROS DE ENTRADA E SAÍDA
-                com.Parameters.AddWithValue("@NOME", nome);
-                com.Parameters.AddWithValue("@EMAIL", email);
-                com.Parameters.AddWithValue("@CEL", cel);
-                com.Parameters.Add("@MSG", SqlDbType.VarChar, 100).Direction = ParameterDirection.Output;
-
-                // INICIA CONEXÃO COM SERVIDOR
-                conn.Open();
-                SqlDataReader dr = com.ExecuteReader();
-                Console.Clear();
-
-                // LEITURA DOS DADOS
-                while (dr.Read())
-                {
-                    Console.WriteLine("\nID: " + dr["ID"].ToString());
-                    Console.WriteLine("\nNome: " + dr["NOME"].ToString());
-                    Console.WriteLine("\nE-mail: " + dr["EMAIL"].ToString());
-                    Console.WriteLine("\nCelular: " + dr["CEL"].ToString());
-                    Console.WriteLine("\n----------------------------------------------");
-                }
-                conn.Close();
-
-                // ABRIR NOVA CONEXÃO, PARA MENSAGEM (PARÂMETRO DE SAÍDA)
-                conn.Open();
-                com.ExecuteNonQuery();
-
-                string mensagem = com.Parameters["@MSG"].Value.ToString();
-                //string mensagem = com.Parameters["@MSG"].Value.ToString();
-
-                if (mensagem != "")
-                {
-                    Console.WriteLine("\n" + mensagem);
-                }
-                Console.ReadLine();
-                conn.Close();
-
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Erro" + ex);
-                Console.ReadLine();
-            }
-        }
-
         //MÉTODO PARA BUSCAR TODOS OS CONTATOS
         public static void BuscarTudo()
         {
             // DECLARA CONEXÃO COM O SERVIDOR
-            SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-0S0H478\SQLEXPRESS;Initial Catalog=DBProva;Integrated Security=True");
+            SqlConnection conn = new SqlConnection(@"Data Source=RAYDESOL\SQLEXPRESS;Initial Catalog=DBProva;User ID=sa;Password=L3i4mais");
 
             try
             {
@@ -457,51 +402,10 @@ namespace Contatos
             }
         }
 
-        // MÉTODO PARA CADASTRAR CONTATO
-        public static void Cadastrar(string nome, string email, string cel)
-        {
-            // DECLARA CONEXÃO COM O SERVIDOR
-            SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-0S0H478\SQLEXPRESS;Initial Catalog=DBProva;Integrated Security=True");
-
-            try
-            {
-                // CHAMADA DE STORED PROCEDURE + CONEXÃO
-                SqlCommand com = new SqlCommand("spCadContato", conn);
-                com.CommandType = CommandType.StoredProcedure;
-
-                // ADICIONANDO PARÂMETROS DE ENTRADA E SAÍDA
-                com.Parameters.AddWithValue("@NOME", nome);
-                com.Parameters.AddWithValue("@EMAIL", email);
-                com.Parameters.AddWithValue("@CEL", cel);
-                com.Parameters.Add("@MSG", SqlDbType.VarChar, 100).Direction = ParameterDirection.Output;
-
-                // INICIA CONEXÃO
-                conn.Open();
-                com.ExecuteNonQuery();
-
-                string mensagem = com.Parameters["@MSG"].Value.ToString();
-
-                conn.Close();
-
-                Console.WriteLine("\n");
-                Console.WriteLine(mensagem);
-                Console.WriteLine("\nPressione <Enter> para prosseguir...");
-                Console.ReadLine();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Erro" + ex);
-            }
-            finally
-            {
-                conn.Close();
-            }
-        }
-
         // MÉTODO PARA EDITAR UM CONTATO (MENU PEINCIPAL)
         public static void Editar(int ID, string nome, string email, string cel)
         {
-            SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-0S0H478\SQLEXPRESS;Initial Catalog=DBProva;Integrated Security=True");
+            SqlConnection conn = new SqlConnection(@"Data Source=RAYDESOL\SQLEXPRESS;Initial Catalog=DBProva;User ID=sa;Password=L3i4mais");
 
             try
             {
@@ -535,7 +439,7 @@ namespace Contatos
         // MÉTODO PARA DELETAR CONTATO
         public static void Deletar(int ID)
         {
-            SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-0S0H478\SQLEXPRESS;Initial Catalog=DBProva;Integrated Security=True");
+            SqlConnection conn = new SqlConnection(@"Data Source=RAYDESOL\SQLEXPRESS;Initial Catalog=DBProva;User ID=sa;Password=L3i4mais");
 
             try
             {
