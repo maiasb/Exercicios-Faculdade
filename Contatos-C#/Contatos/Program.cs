@@ -211,7 +211,12 @@ namespace Contatos
                     Console.WriteLine("\nEditar celular: ");
                     string cel = Console.ReadLine();
 
-                    if (!num(cel) || cel.Length < 8)
+                    if (!num(cel))
+                    {
+                        Console.WriteLine("\n\nCelular inválido!!");
+                        Console.ReadLine();
+                    }
+                    else if (cel != "" && !num(cel) || cel != "" && cel.Length < 8)
                     {
                         Console.WriteLine("\n\nCelular inválido!!");
                         Console.ReadLine();
