@@ -14,11 +14,13 @@ namespace Contatos
         // INÍCIO
         static void Main(string[] args)
         {
-            // VARIÁVEIS / OPERADORES PARA CONDIÇÕES / Instância de objeto
-            Visita visita = new Visita();
+            // VARIÁVEIS / OPERADORES PARA CONDIÇÕES
             Console.Clear();
             string op;
             string op2;
+
+            // INSTANCIAÇÃO DO OBJETO
+            Visita visita = new Visita();
 
             // LAÇO PARA O PRIMEIRO MENU (CRUD)
             do
