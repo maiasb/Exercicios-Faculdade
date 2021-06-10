@@ -11,7 +11,7 @@ namespace Contatos
 {
     class Contatos
     {
-        // INÍCIO
+        // PROGRAM
         static void Main(string[] args)
         {
             // VARIÁVEIS / OPERADORES PARA CONDIÇÕES
@@ -49,151 +49,8 @@ namespace Contatos
                         // CONDIÇÃO PARA RESULTADOS DA BUSCA
                         if (op2 == "1")
                         {
-                            string op3;
-
-                            do
-                            { // CHAMADA DO MÉTODO PARA BUSCAR TUDO
-                                visita.getDadosAll();
-
-                                Console.WriteLine("\nDigite <0> para RETORNAR AO MENU ANTERIOR...");
-                                Console.WriteLine("\nDigite <edit> para editar um contato...");
-                                Console.WriteLine("\nDigite <del> para editar um contato...");
-                                op3 = Console.ReadLine();
-
-                                // CONDIÇÃO PARA EDITAR CONTATO
-                                if (op3 == "edit")
-                                {
-                                    Console.Clear();
-
-                                    visita.getDadosAll();
-
-                                    Console.WriteLine("\nSelecione um ID: ");
-                                    Console.WriteLine("\nDigite <cancel> para cancelar edição: ");
-                                    string ID = Console.ReadLine();
-
-                                    if (ID == "")
-                                    {
-                                        Console.WriteLine("\nComando inválido.");
-                                        Console.ReadLine();
-                                    }
-                                    else if (num(ID))
-                                    {
-                                        Console.Clear();
-
-                                        string mensagem = BuscarID(Convert.ToInt32(ID));
-
-                                        if (mensagem == "")
-                                        {
-                                            Console.WriteLine("\n----------------------------------------------- ");
-
-                                            Console.WriteLine("\nEditar nome: ");
-                                            string nome = Console.ReadLine();
-
-                                            Console.WriteLine("\nEditar E-mail: ");
-                                            string email = Console.ReadLine();
-
-                                            Console.WriteLine("\nEditar celular: ");
-                                            string cel = Console.ReadLine();
-
-                                            if (!num(cel) || cel.Length < 8)
-                                            {
-                                                Console.WriteLine("\n\nCelular inválido!!");
-                                                Console.ReadLine();
-                                            }
-                                            else
-                                            {
-                                                visita.updtDados(Convert.ToInt32(ID), nome, email, cel);
-                                            }
-                                        }
-                                        else
-                                        {
-                                            Console.Clear();
-                                            Console.WriteLine(mensagem);
-                                            Console.ReadLine();
-                                        }
-                                    }
-                                    else if (ID == "cancel")
-                                    {
-                                        op3 = "cancel";
-                                    }
-                                    else
-                                    {
-                                        Console.WriteLine("\nComando inválido.");
-                                        Console.ReadLine();
-                                    }
-                                }
-
-                                // CONDIÇÃO PARA DELETAR CONTATO
-                                else if (op3 == "del")
-                                {
-                                    Console.Clear();
-
-                                    visita.getDadosAll();
-
-                                    Console.WriteLine("\nSelecione um ID: ");
-                                    Console.WriteLine("\nDigite <cancel> para cancelar edição: ");
-                                    string ID = Console.ReadLine();
-
-                                    if (ID == "")
-                                    {
-                                        Console.WriteLine("\nComando inválido.");
-                                        Console.ReadLine();
-                                    }
-                                    else if (num(ID) && BuscarIDD(Convert.ToInt32(ID)))
-                                    {
-                                        Console.Clear();
-                                        BuscarID(Convert.ToInt32(ID));
-                                        Console.WriteLine("\n\n---------------DELETAR---------------");
-                                        Console.WriteLine("\nEssa viagem é realmente necessária?");
-                                        Console.WriteLine("\nY: Claro que é necessária. Eu sou o diabo necessário.");
-                                        Console.WriteLine("\nN: Não");
-                                        string con = Console.ReadLine();
-
-                                        if (con == "Y" || con == "y")
-                                        {
-                                            visita.delDados(Convert.ToInt32(ID));
-                                            Console.ReadLine();
-                                        }
-                                        else if (con == "N" || con == "n")
-                                        {
-
-                                        }
-                                        else
-                                        {
-                                            Console.WriteLine("\nComando inválido.");
-                                            Console.ReadLine();
-                                        }
-                                    }
-                                    else if (ID == "cancel")
-                                    {
-                                        op3 = "cancel";
-                                    }
-                                    else if (num(ID))
-                                    {
-                                        if (!BuscarIDD(Convert.ToInt32(ID)))
-                                        {
-                                            Console.WriteLine("\nID inválido.");
-                                            Console.ReadLine();
-                                        }
-                                    }
-                                    else
-                                    {
-                                        Console.WriteLine("Comando inválido.");
-                                        Console.ReadLine();
-                                    }
-                                }
-                                else if (op3 == "0")
-                                {
-                                    op3 = "0";
-                                }
-                                else
-                                {
-                                    Console.WriteLine("\nComando inválido.");
-                                    Console.ReadLine();
-                                }
-
-                                Console.Clear();
-                            } while (op3 != "0");
+                            // CHAMADA DO MÉTODO
+                            getContatosAllMenu();
                         }
                         // CONDIÇÃO PARA BUSCAR APENAS CONTATOS COM AS INFORMAÇÕES INSERIDAS
                         else if (op2 == "2")
@@ -272,8 +129,180 @@ namespace Contatos
             Console.ReadLine();
         }
 
+        // MENU PARA BUSCAR TODOS OS CONTATOS
+        public static void getContatosAllMenu()
+        {
+            string op3;
 
-        // MÉTODOS ===============================================================================================================
+            // INSTANCIAÇÃO DO OBJETO
+            Visita visita = new Visita();
+
+            do
+            { // CHAMADA DO MÉTODO PARA BUSCAR TUDO
+                visita.getDadosAll();
+
+                Console.WriteLine("\nDigite <0> para RETORNAR AO MENU ANTERIOR...");
+                Console.WriteLine("\nDigite <edit> para editar um contato...");
+                Console.WriteLine("\nDigite <del> para editar um contato...");
+                op3 = Console.ReadLine();
+
+                // CONDIÇÃO PARA EDITAR CONTATO
+                if (op3 == "edit")
+                {
+                    updateContato();
+                }
+
+                // CONDIÇÃO PARA DELETAR CONTATO
+                else if (op3 == "del")
+                {
+                    delContato();
+                }
+                else if (op3 == "0")
+                {
+                    op3 = "0";
+                }
+                else
+                {
+                    Console.WriteLine("\nComando inválido.");
+                    Console.ReadLine();
+                }
+
+                Console.Clear();
+            } while (op3 != "0");
+        }
+
+        // MENU PARA EDITAR UM CONTATO
+        public static void updateContato()
+        {
+            string op3;
+
+            // INSTANCIAÇÃO DO OBJETO
+            Visita visita = new Visita();
+
+            Console.Clear();
+
+            visita.getDadosAll();
+
+            Console.WriteLine("\nSelecione um ID: ");
+            Console.WriteLine("\nDigite <cancel> para cancelar edição: ");
+            string ID = Console.ReadLine();
+
+            if (ID == "")
+            {
+                Console.WriteLine("\nComando inválido.");
+                Console.ReadLine();
+            }
+            else if (num(ID))
+            {
+                Console.Clear();
+
+                string mensagem = BuscarID(Convert.ToInt32(ID));
+
+                if (mensagem == "")
+                {
+                    Console.WriteLine("\n----------------------------------------------- ");
+
+                    Console.WriteLine("\nEditar nome: ");
+                    string nome = Console.ReadLine();
+
+                    Console.WriteLine("\nEditar E-mail: ");
+                    string email = Console.ReadLine();
+
+                    Console.WriteLine("\nEditar celular: ");
+                    string cel = Console.ReadLine();
+
+                    if (!num(cel) || cel.Length < 8)
+                    {
+                        Console.WriteLine("\n\nCelular inválido!!");
+                        Console.ReadLine();
+                    }
+                    else
+                    {
+                        visita.updtDados(Convert.ToInt32(ID), nome, email, cel);
+                    }
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine(mensagem);
+                    Console.ReadLine();
+                }
+            }
+            else if (ID == "cancel")
+            {
+                op3 = "cancel";
+            }
+            else
+            {
+                Console.WriteLine("\nComando inválido.");
+                Console.ReadLine();
+            }
+        }
+
+        // MÉTODO PARA DELETAR UM CONTATO
+        public static void delContato()
+        {
+            string op3;
+
+            // INSTANCIAÇÃO DO OBJETO
+            Visita visita = new Visita();
+
+            Console.Clear();
+
+            visita.getDadosAll();
+
+            Console.WriteLine("\nSelecione um ID: ");
+            Console.WriteLine("\nDigite <cancel> para cancelar edição: ");
+            string ID = Console.ReadLine();
+
+            if (ID == "")
+            {
+                Console.WriteLine("\nComando inválido.");
+                Console.ReadLine();
+            }
+            else if (num(ID) && BuscarIDD(Convert.ToInt32(ID)))
+            {
+                Console.Clear();
+                BuscarID(Convert.ToInt32(ID));
+                Console.WriteLine("\n\n---------------DELETAR---------------");
+                Console.WriteLine("\nEssa viagem é realmente necessária?");
+                Console.WriteLine("\nY: Claro que é necessária. Eu sou o diabo necessário.");
+                Console.WriteLine("\nN: Não");
+                string con = Console.ReadLine();
+
+                if (con == "Y" || con == "y")
+                {
+                    visita.delDados(Convert.ToInt32(ID));
+                    Console.ReadLine();
+                }
+                else if (con == "N" || con == "n")
+                {
+
+                }
+                else
+                {
+                    Console.WriteLine("\nComando inválido.");
+                    Console.ReadLine();
+                }
+            }
+            else if (ID == "cancel")
+            {
+                op3 = "cancel";
+            }
+            else if (num(ID))
+            {
+                if (!BuscarIDD(Convert.ToInt32(ID)))
+                {
+                    Console.WriteLine("\nID inválido.");
+                    Console.ReadLine();
+                }
+            }
+            else
+            {
+                Console.WriteLine("Comando inválido.");
+                Console.ReadLine();
+            }
+        }
 
         // BUSCAR CONTATO POR ID
         public static string BuscarID(int ID)
