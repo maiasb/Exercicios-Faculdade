@@ -11,7 +11,7 @@ namespace Contatos
 {
     class Connect
     {
-        SqlConnection conn = new SqlConnection(@"Data Source=RAYDESOL\SQLEXPRESS;Initial Catalog=DBProva;User ID=sa;Password=L3i4mais");
+        SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["PC_MAIA"].ConnectionString);
 
         public void setDados(string nome, string email, string cel)
         {
@@ -52,8 +52,6 @@ namespace Contatos
 
         public void getDados(string nome, string email, string cel)
         {
-            SqlConnection conn = new SqlConnection(@"Data Source=RAYDESOL\SQLEXPRESS;Initial Catalog=DBProva;User ID=sa;Password=L3i4mais");
-
             try
             {
                 // CHAMADA DE STORED PROCEDURE + CONEXÃO
@@ -106,9 +104,6 @@ namespace Contatos
 
         public void getDadosAll()
         {
-            // DECLARA CONEXÃO COM O SERVIDOR
-            SqlConnection conn = new SqlConnection(@"Data Source=RAYDESOL\SQLEXPRESS;Initial Catalog=DBProva;User ID=sa;Password=L3i4mais");
-
             try
             {
                 // CHAMADA DE STORED PROCEDURE + CONEXÃO
@@ -142,8 +137,6 @@ namespace Contatos
 
         public void updtDados(int ID, string nome, string email, string cel)
         {
-            SqlConnection conn = new SqlConnection(@"Data Source=RAYDESOL\SQLEXPRESS;Initial Catalog=DBProva;User ID=sa;Password=L3i4mais");
-
             try
             {
                 SqlCommand com = new SqlCommand("spEditarContato", conn);
@@ -175,8 +168,6 @@ namespace Contatos
 
         public void delDados(int ID)
         {
-            SqlConnection conn = new SqlConnection(@"Data Source=RAYDESOL\SQLEXPRESS;Initial Catalog=DBProva;User ID=sa;Password=L3i4mais");
-
             try
             {
                 SqlCommand com = new SqlCommand("spDelContato", conn);
