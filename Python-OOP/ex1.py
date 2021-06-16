@@ -3,40 +3,48 @@ class Ponto:
     def __init__(self, coordX, coordY):
         self.x = coordX
         self.y = coordY
-    
+
     # MÉTODOS PARA SETAR NOVOS VALOES
     def SetX(self, novoX):
         self.x = novoX
+
     def SetY(self, novoy):
         self.y = novoy
+
     def GetX(self):
         return self.x
+
     def GetY(self):
         return self.y
+
 
 class Linha(Ponto):
     def __init__(self, coordx, coordy):
         super().__init__(coordx, coordy)
         self.__linha = []
-    
+
     def addPonto(self, x, y):
         ponto = Ponto(x, y)
         self.__linha.append(ponto)
 
+
+# RECEBE AS COORDENADAS INICIAIS
+xp = int(input("Insira a coordenada X: "))
+yp = int(input("Insira a coordenada Y: "))
+
 # INSTANCIANDO O OBJETO
-p1 = Ponto(10,10)
-p2 = Ponto(20,20)
+p1 = Ponto(xp, yp)
+print(f'A coordenada x é: {p1.GetX()}')
+print(f'A coordenada y é: {p1.GetY()}')
 
-# PRINTANNDO NA TELA
-print(p1.x)
-print(p1.y)
-print(p2.x)
-print(p2.y)
-
+# RECEBE AS NOVAS COORDENADAS
+novoxp = int(input("Insira uma nova coordenada X: "))
+novoyp = int(input("Insira uma nova coordenada Y: "))
 # SETANDO NOVO VALOR NO P1.X
-p1.SetX(40)
-print(p1.GetX())
-print(p1.GetY())
+p1.SetX(novoxp)
+p1.SetY(novoyp)
+print(f'A coordenada x agora se tornou: {p1.GetX()}')
+print(f'A coordenada y agora se tornou: {p1.GetY()}')
 
 # Adicionando valores nas linhas
 linha1 = Linha(0, 0)
