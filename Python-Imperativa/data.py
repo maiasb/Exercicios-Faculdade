@@ -31,7 +31,7 @@ def coletardata():
         limpar()
         print("Informe uma dia valido.")
 
-        if(len(dia) <2):
+        if(len(dia) < 2):
             print("Ex: '02'\n")
 
         dia = input("Dia: ")
@@ -43,7 +43,7 @@ def coletardata():
         limpar()
         print("Informe uma mes valido.")
 
-        if(len(mes) <2):
+        if(len(mes) < 2):
             print("Ex: '02'\n")
 
         mes = input(f'{dia}/')
@@ -99,15 +99,15 @@ def validardata(dia, mes, ano):
         print("\nData invalida.")
         print("Verifique quantos dias possui este mes.\n")
         return None
-    elif(mes == '10' and int( dia) > 31):
+    elif(mes == '10' and int(dia) > 31):
         print("\nData invalida.")
         print("Verifique quantos dias possui este mes.\n")
         return None
-    elif(mes == '11' and int( dia) > 30):
+    elif(mes == '11' and int(dia) > 30):
         print("\nData invalida.")
         print("Verifique quantos dias possui este mes.\n")
         return None
-    elif(mes == '12' and int( dia) > 31):
+    elif(mes == '12' and int(dia) > 31):
         print("\nData invalida.")
         print("Verifique quantos dias possui este mes.\n")
         return None

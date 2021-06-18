@@ -27,6 +27,9 @@ class Linha(Ponto):
         ponto = Ponto(x, y)
         self.__linha.append(ponto)
 
+    def getPonto(self):
+        return self.__linha
+
 
 # RECEBE AS COORDENADAS INICIAIS
 xp = int(input("Insira a coordenada X: "))
@@ -51,3 +54,5 @@ linha1 = Linha(0, 0)
 linha1.addPonto(1, 1)
 linha1.addPonto(2, 2)
 linha1.addPonto(3, 3)
+
+print(linha1.getPonto())
