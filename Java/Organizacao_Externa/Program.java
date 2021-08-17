@@ -3,8 +3,8 @@ import java.util.Scanner;
 
 public class Program {
     public static void main(String[] args) throws IOException {
-        // String path = "C:\\Users\\maias\\Desktop\\CODES\\TESTES\\JAVA\\Files\\a.txt";
-        String path = "C:\\Users\\5949308\\Desktop\\JAVA\\a.txt";
+        String path = "C:\\Users\\maias\\Desktop\\CODES\\TESTES\\JAVA\\Files\\a.txt";
+        // String path = "C:\\Users\\5949308\\Desktop\\JAVA\\a.txt";
         Scanner scan = new Scanner(System.in);
         int menu = 0;
 

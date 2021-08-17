@@ -11,8 +11,8 @@ public class ManipuladorArquivo {
 
     public static void criarArquivoTXT() throws IOException {
         Scanner scan = new Scanner(System.in);
-        // String path = "C:\\Users\\maias\\Desktop\\CODES\\TESTES\\JAVA\\Files\\";
-        String path = "C:\\Users\\5949308\\Desktop\\JAVA\\";
+        String path = "C:\\Users\\maias\\Desktop\\CODES\\TESTES\\JAVA\\Files\\";
+        // String path = "C:\\Users\\5949308\\Desktop\\JAVA\\";
         Random random = new Random();
 
         System.out.printf("\nDigite o nome do arquivo:\n");
@@ -21,7 +21,7 @@ public class ManipuladorArquivo {
         FileWriter arq = new FileWriter(path + nomeArq + ".txt");
         PrintWriter gravarArq = new PrintWriter(arq);
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 20; i++) {
             Integer numero = random.nextInt();
             if (numero < 0) {
                 numero = numero - (numero * 2);
@@ -49,7 +49,8 @@ public class ManipuladorArquivo {
     }
 
     public static void mergeSort(String path) throws IOException {
-        int[] lista = new int[10];
+        int[] lista = new int[20];
+        int[] listaAux = new int[lista.length];
         int cont = 0;
         BufferedReader buffRead = new BufferedReader(new FileReader(path));
         String linha = "";
@@ -66,65 +67,56 @@ public class ManipuladorArquivo {
         }
         buffRead.close();
 
-        mergeSort(lista.length, lista);
+        mergeSort(lista, listaAux, 0, lista.length - 1);
+        criarArquivoIntercala(lista);
     }
 
-    private static void mergeSort(int tamanho, int[] vetor) {
-        int elementos = 1;
-        int inicio, meio, fim;
-
-        while (elementos < tamanho) {
-            inicio = 0;
-
-            while (inicio + elementos < tamanho) {
-                meio = inicio + elementos;
-                fim = inicio + 2 * elementos;
-                if (fim > tamanho)
-                    fim = tamanho;
-
-                intercala(vetor, inicio, meio, fim);
-
-                inicio = fim;
-            }
-
-            elementos = elementos * 2;
+    private static void mergeSort(int[] lista, int[] listaAux, int ini, int fim) {
+        if (ini < fim) {
+            int meio = (ini + fim) / 2;
+            mergeSort(lista, listaAux, ini, meio);
+            mergeSort(lista, listaAux, meio + 1, fim);
+            interlaca(lista, listaAux, ini, meio, fim);
         }
     }
 
-    private static void intercala(int[] vetor, int inicio, int meio, int fim) {
+    private static void interlaca(int[] lista, int[] listaAux, int ini, int meio, int fim) {
+        for (int k = ini; k <= fim; k++) {
+            listaAux[k] = lista[k];
+        }
+        int i = ini;
+        int j = meio + 1;
 
-        int novoVetor[] = new int[fim - inicio];
-        int i = inicio;
-        int m = meio;
-        int pos = 0;
-
-        while (i < meio && m < fim) {
-            if (vetor[i] <= vetor[m]) {
-                novoVetor[pos] = vetor[i];
-                pos = pos + 1;
-                i = i + 1;
+        for (int k = ini; k <= fim; k++) {
+            if (i > meio) {
+                lista[k] = listaAux[j++];
+            } else if (j > fim) {
+                lista[k] = listaAux[i++];
+            } else if (listaAux[i] < listaAux[j]) {
+                lista[k] = listaAux[i++];
             } else {
-                novoVetor[pos] = vetor[m];
-                pos = pos + 1;
-                m = m + 1;
+                lista[k] = listaAux[j++];
             }
         }
+    }
 
-        while (i < meio) {
-            novoVetor[pos] = vetor[i];
-            pos = pos + 1;
-            i = i + 1;
+    public static void criarArquivoIntercala(int[] listaAux) throws IOException {
+        Scanner scan = new Scanner(System.in);
+        String path = "C:\\Users\\maias\\Desktop\\CODES\\TESTES\\JAVA\\Files\\";
+        // String path = "C:\\Users\\5949308\\Desktop\\JAVA\\";
+
+        System.out.printf("\nDigite o nome do arquivo:\n");
+        String nomeArq = scan.next();
+
+        FileWriter arq = new FileWriter(path + nomeArq + ".txt");
+        PrintWriter gravarArq = new PrintWriter(arq);
+
+        for (int i = 0; i < listaAux.length; i++) {
+            gravarArq.printf("%d%n", listaAux[i]);
         }
 
-        while (m < fim) {
-            novoVetor[pos] = vetor[m];
-            pos = pos + 1;
-            m = m + 1;
-        }
+        arq.close();
 
-        for (pos = 0, i = inicio; i < fim; i++, pos++) {
-            vetor[i] = novoVetor[pos];
-        }
-
+        System.out.printf("\nO Arquivo foi criado em \"" + path + nomeArq + ".txt\".\n");
     }
 }
