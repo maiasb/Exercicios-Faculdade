@@ -16,44 +16,52 @@ public class Lista {
         return this.total;
     }
 
-    // public void insertionSort() {
-    // int i, j, x;
-    // for (i = 1; i < lista.length; i++) {
-    // x = lista[i];
-    // j = i - 1;
-    // lista[0] = x;
-    // while (x < lista[j]) {
-    // lista[j + 1] = lista[j];
-    // j--;
-    // }
-    // lista[j + 1] = x;
-    // }
-    // }
-
     public void insertionSort() {
+        // MÉTODO PEGA O VALOR À DIREITA E RETORNA ATÉ ONDE NÃO HOUVER NÚMEROS MENORES
+        // QUE ELE À ESQUERDA
+
+        // PEGA O TAMANHO DO ARRAY
         int n = lista.length;
-        for (int j = 1; j < n; j++) {
-            int key = lista[j];
-            int i = j - 1;
-            while ((i > -1) && (lista[i] > key)) {
-                lista[i + 1] = lista[i];
-                i--;
+        // PERCORRE TODA A LISTA, AUMENTANDO O INDICE
+        for (int indice = 1; indice < n; indice++) {
+            // PEGA O VALOR DO INDICE ATUAL
+            int valor = lista[indice];
+            // PEGA O INDICE ANTERIOR AO INDICE ATUAL
+            int j = indice - 1;
+            // LOOP BUSCA VALORES À ESQUERDA QUE SEJAM MAIORES QUE O VALOR DO INDICE ATUAL,
+            // CASO NÃO ENCONTRE, O VALOR DO INDICE ATUAL OCUPA ESTE LUGAR
+            while ((j > -1) && (lista[j] > valor)) {
+                // OS INDICES SÃO DIMINUIDOS E O VALOR EMPURRADO PARA A DIREITA
+                lista[j + 1] = lista[j];
+                j--;
             }
-            lista[i + 1] = key;
+            // POR FIM, A CASA ONDE O VALOR ATUAL DEVE FICAR
+            lista[j + 1] = valor;
         }
     }
 
     public void selectionSort() {
+        // PERCORRE TODO O ARRAY À DIREITA, BUSCANDO O MENOR VALOR.
+        // QUANDO ENCONTRA, JOGA PRO INDICE EM QUE COMEÇOU O FOR
+
         int i, j, min, x;
-        for (i = 0; i <= total - 1; i++) {
+        // PERCORRE TODO O ARRAY À DIREITA
+        for (i = 0; i < lista.length; i++) {
+            // INDICE MÍNIMO COMEÇA COM O INDICE ATUAL
             min = i;
-            for (j = i + 1; j < total; j++) {
-                if (this.lista[j] < this.lista[min])
+            // ENTRA NO FOR SE TIVER ALGUM MAIOR QUE ELE À DIREITA
+            // PERCORRE TODO O ARRAY NOVAMENTE, BUSCANDO O VALOR MENOR QUE ELE À DIREITA
+            for (j = i + 1; j < lista.length; j++) {
+                // SE ENCONTRAR ALGUM MENOR QUE ELE À DIREITA, O INDICE DO VALOR MENOR SERÁ
+                // SELECIONADO
+                if (lista[j] < lista[min])
                     min = j;
             }
-            x = this.lista[min];
-            this.lista[min] = this.lista[i];
-            this.lista[i] = x;
+            // É TROCADA A POSIÇÃO ENTRE O INDICE ATUAL DO FOR E O MÍNIMO ENCONTRADO
+            x = lista[min];
+            lista[min] = lista[i];
+            // INCIDE ATUAL DO FOR RECEBE O VALOR MÍNIMO ENCONTRADO
+            lista[i] = x;
         }
     }
 
@@ -61,16 +69,26 @@ public class Lista {
         bubbleSort(this.lista);
     }
 
-    public void bubbleSort(int vetor[]) {
+    public void bubbleSort(int lista[]) {
+        // AUMENTA O INDICE, COMPARANDO PARES E ORDENANDO ENTRE ELES, EMPURRANDO O MAIOR
+        // NÚMERO PARA O FINAL
+
+        // COMEÇA BOOLEAN COMO TRUE PARA ENTRAR NO LOOP
         boolean troca = true;
         int aux;
         while (troca) {
+            // BOOLEAN RECEBE FALSE PARA SAIR SE NÃO PRECISAR MAIS TROCAR
             troca = false;
-            for (int i = 0; i < vetor.length - 1; i++) {
-                if (vetor[i] > vetor[i + 1]) {
-                    aux = vetor[i];
-                    vetor[i] = vetor[i + 1];
-                    vetor[i + 1] = aux;
+            // PARA CADA INDICE DO ARRAY, ELE COMPARA O VALOR DO INDICE ATUAL COM O
+            // POSTERIOR.
+            for (int i = 0; i < lista.length - 1; i++) {
+                // SE O VALOR DO INDICE ATUAL FOR MAIOR QUE O POSTERIOR, ELES TROCAM DE POSIÇÃO
+                if (lista[i] > lista[i + 1]) {
+                    aux = lista[i];
+                    // AQUI ELES TROCAM DE POSIÇÃO
+                    lista[i] = lista[i + 1];
+                    lista[i + 1] = aux;
+                    // BOOLEAN RECEBE TRUE PARA CONTINUAR NO LOOP
                     troca = true;
                 }
             }

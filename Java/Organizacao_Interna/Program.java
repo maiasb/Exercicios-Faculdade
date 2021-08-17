@@ -34,5 +34,6 @@ public class Program {
                     break;
             }
         } while (menu != 0);
+        scan.close();
     }
 }
