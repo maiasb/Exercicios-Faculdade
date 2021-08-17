@@ -9,6 +9,8 @@ import java.util.Scanner;
 public class ManipuladorArquivo {
 
     public static void criarArquivo() throws IOException {
+        // String path = "C:\\Users\\maias\\Desktop\\CODES\\TESTES\\JAVA\\Files\\";
+        String path = "C:\\Users\\5949308\\Desktop\\JAVA\\";
         Scanner scan = new Scanner(System.in);
 
         System.out.println("\nDigite os números separando-os com vírgula:");
@@ -19,7 +21,7 @@ public class ManipuladorArquivo {
         System.out.printf("\nDigite o nome do arquivo:\n");
         String nomeArq = scan.next();
 
-        FileWriter arq = new FileWriter("C:\\Users\\maias\\Desktop\\CODES\\TESTES\\JAVA\\Files\\" + nomeArq + ".txt");
+        FileWriter arq = new FileWriter(path + nomeArq + ".txt");
         PrintWriter gravarArq = new PrintWriter(arq);
 
         for (int i = 0; i < numerosRecebidos.length; i++) {
@@ -28,8 +30,7 @@ public class ManipuladorArquivo {
 
         arq.close();
 
-        System.out.printf("\nO Arquivo foi criado em \"C:\\Users\\maias\\Desktop\\CODES\\TESTES\\JAVA\\Files\\"
-                + nomeArq + ".txt\".\n");
+        System.out.printf("\nO Arquivo foi criado em \"" + path + nomeArq + ".txt\".\n");
     }
 
     public static void leitor(String path) throws IOException {
