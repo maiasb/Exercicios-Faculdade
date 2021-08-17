@@ -16,17 +16,30 @@ public class Lista {
         return this.total;
     }
 
+    // public void insertionSort() {
+    // int i, j, x;
+    // for (i = 1; i < lista.length; i++) {
+    // x = lista[i];
+    // j = i - 1;
+    // lista[0] = x;
+    // while (x < lista[j]) {
+    // lista[j + 1] = lista[j];
+    // j--;
+    // }
+    // lista[j + 1] = x;
+    // }
+    // }
+
     public void insertionSort() {
-        int i, j, x;
-        for (i = 1; i < lista.length; i++) {
-            x = this.lista[i];
-            j = i - 1;
-            this.lista[j] = x;
-            while (x < this.lista[j]) {
-                this.lista[j + 1] = this.lista[j];
-                j--;
+        int n = lista.length;
+        for (int j = 1; j < n; j++) {
+            int key = lista[j];
+            int i = j - 1;
+            while ((i > -1) && (lista[i] > key)) {
+                lista[i + 1] = lista[i];
+                i--;
             }
-            this.lista[j + 1] = x;
+            lista[i + 1] = key;
         }
     }
 

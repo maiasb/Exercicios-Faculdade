@@ -11,8 +11,8 @@ public class ManipuladorArquivo {
 
     public static void criarArquivoTXT() throws IOException {
         Scanner scan = new Scanner(System.in);
-        // String path = "C:\\Users\\maias\\Desktop\\CODES\\TESTES\\JAVA\\Files\\";
-        String path = "C:\\Users\\5949308\\Desktop\\JAVA\\";
+        String path = "C:\\Users\\maias\\Desktop\\CODES\\TESTES\\JAVA\\Files\\";
+        // String path = "C:\\Users\\5949308\\Desktop\\JAVA\\";
         Random random = new Random();
 
         System.out.printf("\nDigite o nome do arquivo:\n");
