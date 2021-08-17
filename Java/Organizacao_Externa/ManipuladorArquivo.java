@@ -72,27 +72,45 @@ public class ManipuladorArquivo {
     }
 
     private static void mergeSort(int[] lista, int[] listaAux, int ini, int fim) {
+        // SE O INICIO FOR MAIOR QUE O FIM (O FIM TAMBÉM SERÁ O MEIO DE ACORDO COM QUE
+        // AVANÇA)
         if (ini < fim) {
             int meio = (ini + fim) / 2;
+            // FAZ O SORT EM TODO O INICIO ATÉ O MEIO
             mergeSort(lista, listaAux, ini, meio);
+            // FAZ O SORT DO MEIO ATÉ O FIM
             mergeSort(lista, listaAux, meio + 1, fim);
+            // INTERCALA OS RESULTADOS
             interlaca(lista, listaAux, ini, meio, fim);
         }
     }
 
     private static void interlaca(int[] lista, int[] listaAux, int ini, int meio, int fim) {
+        // TODA A LISTA AUXILIAR É PREENCHIDA
         for (int k = ini; k <= fim; k++) {
             listaAux[k] = lista[k];
         }
         int i = ini;
         int j = meio + 1;
 
+        // PERCORRE O INICIO AO FIM
         for (int k = ini; k <= fim; k++) {
+            // SE O INICIO FOR MAIOR QUE O MEIO
+            // O VALOR DO INDICE ATUAL RECEBE O PRÓXIMO VALOR DO INDICE A PARTIR DO MEIO
             if (i > meio) {
                 lista[k] = listaAux[j++];
-            } else if (j > fim) {
+            }
+            // SE O MEIO FOR MAIOR QUE O FIM
+            // O VALOR DO INDICE ATUAL RECEBE O PRÓXIMO VALOR DO INDICE A PARTIR DO INICIO
+            else if (j > fim) {
                 lista[k] = listaAux[i++];
-            } else if (listaAux[i] < listaAux[j]) {
+            }
+            // SE O VALOR DO INDICE DO INICIO FOR MENOR QUE O VALOR DO INDICE DO MEIO DA
+            // LISTA AUXILIAR
+            // O VALOR DO INDICE ATUAL RECEBE O PROXIMO VALOR DO INDICE A PARTIR DO INICIO
+            // SENAO, O VALOR DO INDICE ATUAL RECEBE O PROXIMO VALOR DO INDICE A PARTIR DO
+            // MEIO
+            else if (listaAux[i] < listaAux[j]) {
                 lista[k] = listaAux[i++];
             } else {
                 lista[k] = listaAux[j++];
