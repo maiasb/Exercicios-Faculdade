@@ -1,0 +1,38 @@
+#divDestaque {
+    display: flex;
+    flex-direction: column;
+
+    .divItem {
+
+        a {
+            margin-top: 2%;
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            height: 70%;
+            text-decoration: none;
+            color: black;
+            border-radius: 8px;
+            transition: 0.2s;
+
+            &:hover {
+                box-shadow: 0 0 1em black;
+                width: 100.2%;
+            }
+        
+            .divTexto {
+                width: 50%;
+            }
+    
+            .divImage {
+                width: 50%;
+    
+                img {
+                    display: flex;
+                    margin: auto;
+                    max-width: 90%;
+                }
+            }
+        }
+    }
+}
