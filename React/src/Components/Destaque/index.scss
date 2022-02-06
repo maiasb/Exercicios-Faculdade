@@ -3,7 +3,7 @@
     flex-direction: column;
 
     .divItem {
-
+        padding: 0;
         a {
             margin-top: 2%;
             display: flex;
@@ -13,11 +13,9 @@
             text-decoration: none;
             color: black;
             border-radius: 8px;
-            transition: 0.2s;
 
             &:hover {
-                box-shadow: 0 0 1em black;
-                width: 100.2%;
+                background: linear-gradient(to right, #E4E8EB , #9fa3a6, #E4E8EB);
             }
         
             .divTexto {
@@ -31,6 +29,7 @@
                     display: flex;
                     margin: auto;
                     max-width: 90%;
+                    border-radius: 8px;
                 }
             }
         }

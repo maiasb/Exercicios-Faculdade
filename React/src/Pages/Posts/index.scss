@@ -1,0 +1,119 @@
+#sobreGatos {
+display: flex;
+flex-direction: column;
+margin: 0px;
+padding: 0px;
+
+    header {
+        display: flex;
+        flex: row;
+        gap: 15%;
+        top: 0;
+        height: 10%;
+        width: 100%;
+        position: fixed;
+        background-color: black;
+        z-index: 999;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+
+        a {
+            text-decoration: none;
+            color: white;
+        }
+    }
+
+    main {
+        height: 100%;
+        justify-content: center;
+        text-align: center;
+        margin: 10% auto auto auto;
+
+        &::after {
+            content: '';
+            display: block;
+            width: 80%;
+            height: 1px;
+            background: gray;
+            margin: 10% auto 0 auto;
+        }
+
+        .divMain {
+            display: flex;
+            flex-direction: row;
+            margin: auto auto auto auto;
+
+            .divPost {
+                flex-direction: column;
+
+                h1 {
+                    font-size: 300%;
+                }
+    
+                img {
+                    max-width: 80%;
+                }
+
+                p {
+                    padding: 10%;
+                }
+            }
+    
+            .divRelacao {
+                display: flex;
+                flex-direction: column;
+                width: 9%;
+                height: 100%;
+                right: 0;
+                position: fixed;
+
+                .itemRelacao {
+                    right: 0;
+                    z-index: +1;
+                    border-style: solid;
+                    border-width: 2px;
+
+                    h1 {
+                        font-size: small;
+                    }
+
+                    img {
+                        max-width: 100%;
+                        margin: auto;
+                    }
+                }
+            }
+        }
+    }
+
+    footer {
+        display: flex;
+        flex: row;
+        gap: 10%;
+        padding: 2% 0 2% 0;
+        bottom: 0;
+        position: relative;
+        width: 100%;
+        height: 100px;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+
+        a {
+            text-decoration: none;
+            color: black;
+            border-radius: 50px;
+            border-style: solid;
+            border-width: 1px;
+            padding: 10px;
+            font-size: 110%;
+            border-color: transparent;
+
+            &:hover {
+                border-color: black;
+                box-shadow: 0 0 0.5em black;
+            }
+        }
+    }
+}

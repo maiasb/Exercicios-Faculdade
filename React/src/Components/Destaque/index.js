@@ -7,7 +7,7 @@ export function Destaque() {
     return (
         <div id='divDestaque'>
             <div className='divItem'>
-                <a href="https://canaldopet.ig.com.br/curiosidades/especiais/2019-02-12/linguagem-corporal-gatos.html">
+                <a href="/sobreGatos">
                     <div className='divTexto'>
                         <p>Saiba pq o seu gato é um porra</p>
                     </div>
