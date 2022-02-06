@@ -26,9 +26,9 @@ export function Home() {
                 <Destaque />
             </main>
             <footer>
-                <Link to="/about">Sobre</Link>
-                <Link to="/about">Sobre</Link>
-                <a href="mailto:caio.maiasb@gmail.com">Contate-nos</a>
+                <a href="#">Termos</a>
+                <a href="#">Siga-nos</a>
+                <a href="#">Contate-nos</a>
                 <Link to="/about">Sobre</Link>
             </footer>
         </div>
