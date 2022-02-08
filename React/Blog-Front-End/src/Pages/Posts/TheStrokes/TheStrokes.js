@@ -5,6 +5,8 @@ import theStrokes from '../../../Contents/Img/theStrokes.jpg'
 import PinkFloydImg from '../../../Contents/Img/pinkFloyd.jpg'
 import RadioHeadLogo from '../../../Contents/Img/RadioHeadLogo.png'
 
+import { DivTitle } from '../../../Components/DivTitle/DivTitle';
+import { Title } from '../../../Components/Title/Title';
 import { TextBox } from '../../../Components/txtComments';
 
 import "./TheStrokes.scss"
@@ -21,7 +23,11 @@ export function TheStrokes() {
             <main>
                 <div className='divMain'>
                     <div className='divPost'>
-                        <h1 className='divTitle'>The Strokes</h1>
+                        <DivTitle>
+                            <Title
+                                Text="THE STROKES"
+                            />
+                        </DivTitle>
                         <img src={theStrokes} alt="TheStrokes" />
                         <h3 className='divTitle'>Biografia</h3>
                         <div className='divTextPink'>
@@ -64,7 +70,13 @@ export function TheStrokes() {
                         </div>
                         <a href="http://encurtador.com.br/fsvVY" target="_blank">Continuar leitura...</a>
                         <div>
-                            <h1 className="divTitle espacoLink">Faça um comentário</h1>
+
+                            <DivTitle>
+                                <Title
+                                    Text="Comente"
+                                />
+                            </DivTitle>
+
                             <TextBox />
                         </div>
                     </div>

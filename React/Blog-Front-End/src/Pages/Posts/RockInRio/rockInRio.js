@@ -1,6 +1,8 @@
 
 import { Link } from 'react-router-dom';
 
+import { DivTitle } from '../../../Components/DivTitle/DivTitle';
+import { Title } from '../../../Components/Title/Title';
 import { TextBox } from '../../../Components/txtComments';
 
 import rockPost from '../../../Contents/Img/rockPost.png'
@@ -20,7 +22,11 @@ export function RockInRio() {
             <main>
                 <div className='divMain'>
                     <div className='divPost'>
-                        <h1 className='divTitle'>Rock In Rio 2022</h1>
+                        <DivTitle>
+                            <Title
+                                Text="Rock In Rio 2022"
+                            />
+                        </DivTitle>
                         <img src={rockPost} alt="Atrações" />
                         <div className="divTextoLolla">
                             <p>
@@ -132,7 +138,13 @@ export function RockInRio() {
                         </div>
                     </div>
                 </div>
-                <h1 className='divTitle'>Comente</h1>
+
+                <DivTitle>
+                    <Title
+                        Text="Comente"
+                    />
+                </DivTitle>
+
                 <TextBox />
             </main>
             <footer>

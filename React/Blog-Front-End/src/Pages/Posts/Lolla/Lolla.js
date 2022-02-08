@@ -1,6 +1,8 @@
 
 import { Link } from 'react-router-dom';
 
+import { DivTitle } from '../../../Components/DivTitle/DivTitle';
+import { Title } from '../../../Components/Title/Title';
 import { TextBox } from '../../../Components/txtComments';
 
 import LollaAtracoes from '../../../Contents/Img/Lolla.jpg'
@@ -20,7 +22,11 @@ export function Lolla() {
             <main>
                 <div className='divMain'>
                     <div className='divPost'>
-                        <h1 className='divTitle'>Lollapalooza 2022: Programação tem Foo Fighters, Strokes, Miley Cyrus, A$AP Rocky e Martin Garrix</h1>
+                        <DivTitle>
+                            <Title
+                                Text="Lollapalooza 2022: Programação tem Foo Fighters, Strokes, Miley Cyrus, A$AP Rocky e Martin Garrix"
+                            />
+                        </DivTitle>
                         <img src={LollaAtracoes} alt="Atrações" />
                         <div className="divTextoLolla">
                             <p>
@@ -126,7 +132,13 @@ export function Lolla() {
                         </div>
                     </div>
                 </div>
-                <h1 className='divTitle'>Comente</h1>
+
+                <DivTitle>
+                    <Title
+                        Text="Comente"
+                    />
+                </DivTitle>
+
                 <TextBox />
             </main>
             <footer>

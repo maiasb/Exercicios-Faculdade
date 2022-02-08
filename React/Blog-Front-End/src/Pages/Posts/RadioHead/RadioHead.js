@@ -5,6 +5,8 @@ import RadioHeadIntegrantes from '../../../Contents/Img/RadioHead.jpg'
 import PinkFloydImg from '../../../Contents/Img/pinkFloyd.jpg'
 import theStrokesLogo from '../../../Contents/Img/theStrokesLogo.png'
 
+import { DivTitle } from '../../../Components/DivTitle/DivTitle';
+import { Title } from '../../../Components/Title/Title';
 import { TextBox } from '../../../Components/txtComments';
 
 import "./RadioHead.scss"
@@ -21,7 +23,11 @@ export function RadioHead() {
             <main>
                 <div className='divMain'>
                     <div className='divPost'>
-                        <h1 className='divTitle'>RadioHead</h1>
+                        <DivTitle>
+                            <Title
+                                Text="RadioHead"
+                            />
+                        </DivTitle>
                         <img src={RadioHeadIntegrantes} alt="RadioHead" />
                         <h3 className='divTitle'>Biografia</h3>
                         <div className='divTextPink'>
@@ -48,7 +54,13 @@ export function RadioHead() {
                         </div>
                         <a href="http://encurtador.com.br/fkQX4" target="_blank">Continuar leitura...</a>
                         <div>
-                            <h1 className="divTitle espacoLink">Faça um comentário</h1>
+
+                            <DivTitle>
+                                <Title
+                                    Text="Comente"
+                                />
+                            </DivTitle>
+
                             <TextBox />
                         </div>
                     </div>

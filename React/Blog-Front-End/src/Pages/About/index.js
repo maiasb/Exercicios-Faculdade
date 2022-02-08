@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 
+import { DivTitle } from '../../Components/DivTitle/DivTitle';
+import { Title } from '../../Components/Title/Title';
 import { TextBox } from '../../Components/txtComments';
 
 import './index.scss'
@@ -15,7 +17,11 @@ export function About() {
                 <Link to="/about">Login</Link>
             </header>
             <main>
-                <h1 className='divTitle'>Sobre nós</h1>
+                <DivTitle>
+                    <Title
+                        Text="SOBRE NÓS"
+                    />
+                </DivTitle>
                 <h3>
                     Motivações
                 </h3>
@@ -38,7 +44,11 @@ export function About() {
                     Buscamos entregar notícias diárias sobre o mundo do rock e eventos que ainda é possível se ouvir uma boa música (Mesmo nesses casos o rock está ameaçado)
                     , visando atualizar os bons ouvintes sobre tais conteúdos, como novos albuns lançados por sua banda favorita ou mesmo curiosidades sobre aquelas clássicas que não cansamos de ouvir.
                 </p>
-                <h1 className='divTitle'>Nos dê sua opinião</h1>
+                <DivTitle>
+                    <Title
+                        Text="Nos dê sua opinião"
+                    />
+                </DivTitle>
                 <TextBox />
             </main>
             <footer>

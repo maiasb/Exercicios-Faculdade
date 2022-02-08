@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 
-import { Gallery } from '../../Components/Carousel';
+import { DivTitle } from '../../Components/DivTitle/DivTitle';
+import { Title } from '../../Components/Title/Title';
+import { Gallery } from '../../Components/Carousel/Gallery';
 import { Diarias } from '../../Components/Diarias';
 
 import './index.scss'
@@ -16,13 +18,19 @@ export function Home() {
                 <a href="#">Login</a>
             </header>
             <main>
-                <div className='divTitle'>
-                    <h1>MAIS LIDAS NA SEMANA</h1>
-                </div>
+                <DivTitle>
+                    <Title
+                        Text="DESTAQUES"
+                    />
+                </DivTitle>
+
                 <Gallery />
-                <div className='divTitle'>
-                    <h1>POSTAGENS DIÁRIAS</h1>
-                </div>
+
+                <DivTitle>
+                    <Title
+                        Text="POSTAGENS DIÁRIAS"
+                    />
+                </DivTitle>
                 <Diarias />
             </main>
             <footer>

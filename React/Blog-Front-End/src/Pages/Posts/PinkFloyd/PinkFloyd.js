@@ -5,6 +5,8 @@ import PinkFloydImg from '../../../Contents/Img/pinkFloyd.jpg'
 import theStrokesLogo from '../../../Contents/Img/theStrokesLogo.png'
 import RadioHeadLogo from '../../../Contents/Img/RadioHeadLogo.png'
 
+import { DivTitle } from '../../../Components/DivTitle/DivTitle';
+import { Title } from '../../../Components/Title/Title';
 import { TextBox } from '../../../Components/txtComments';
 
 import "./PinkFloyd.scss"
@@ -21,7 +23,11 @@ export function PinkFloyd() {
             <main>
                 <div className='divMain'>
                     <div className='divPost'>
-                        <h1 className='divTitle'>PINK FLOYD</h1>
+                        <DivTitle>
+                            <Title
+                                Text="PINK FLOYD"
+                            />
+                        </DivTitle>
                         <img src={PinkFloydImg} alt="PinkFloyd" />
                         <h3 className='divTitle'>Biografia</h3>
                         <div className='divTextPink'>
@@ -56,7 +62,13 @@ export function PinkFloyd() {
                         </div>
                         <a href="http://encurtador.com.br/exAHQ" target="_blank">Continuar leitura...</a>
                         <div>
-                            <h1 className="divTitle espacoLink">Faça um comentário</h1>
+
+                            <DivTitle>
+                                <Title
+                                    Text="Comente"
+                                />
+                            </DivTitle>
+
                             <TextBox />
                         </div>
                     </div>

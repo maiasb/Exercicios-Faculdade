@@ -44,22 +44,6 @@ padding: 0px;
         box-shadow: 0 0 0.5em black;
         background-color: #E4E8EB;
 
-        .divTitle {
-            width: 80%;
-            padding: 0 auto 0 auto;
-            margin: 5% auto 5% auto;
-            background: linear-gradient(to right, #E4E8EB , #9fa3a6, #E4E8EB);
-        }
-
-        &::after {
-            content: '';
-            display: block;
-            width: 80%;
-            height: 1px;
-            background: gray;
-            margin: 10% auto 0 auto;
-        }
-
         .divMain {
             display: flex;
             flex-direction: row;
