@@ -1,6 +1,4 @@
-#sobreGatos {
-display: flex;
-flex-direction: column;
+.divPost {
 margin: 0px;
 padding: 0px;
 
@@ -20,15 +18,38 @@ padding: 0px;
 
         a {
             text-decoration: none;
-            color: white;
+            color: #E4E8EB;
+            border-radius: 50px;
+            border-style: solid;
+            border-width: 1px;
+            padding: 10px;
+            font-size: 110%;
+            border-color: transparent;
+
+            &:hover {
+                border-color: #E4E8EB;
+                box-shadow: 0 0 0.5em #E4E8EB;
+                box-shadow: inset 0 0 20px rgba(255, 255, 255, .5), 0 0 20px rgba(255, 255, 255, .2);
+            }
         }
     }
 
     main {
         height: 100%;
+        width: 70%;
         justify-content: center;
         text-align: center;
-        margin: 10% auto auto auto;
+        margin: 0 auto 0 auto;
+        padding-top: 5%;
+        box-shadow: 0 0 0.5em black;
+        background-color: #E4E8EB;
+
+        .divTitle {
+            width: 80%;
+            padding: 10% auto 0 auto;
+            margin: 5% auto 5% auto;
+            background: linear-gradient(to right, #E4E8EB , #9fa3a6, #E4E8EB);
+        }
 
         &::after {
             content: '';
@@ -55,8 +76,17 @@ padding: 0px;
                     max-width: 80%;
                 }
 
-                p {
-                    padding: 10%;
+                .divTextPink {
+                    p {
+                        width: 70%;
+                        text-indent: 3ch;
+                        display: inline-block;
+                        text-align: left;
+                    }
+                }
+
+                .espacoLink {
+                    margin-top: 10%;
                 }
             }
     
@@ -68,14 +98,23 @@ padding: 0px;
                 right: 0;
                 position: fixed;
 
+                h3 {
+                    color: white;
+                }
+
                 .itemRelacao {
                     right: 0;
                     z-index: +1;
                     border-style: solid;
                     border-width: 2px;
 
-                    h1 {
-                        font-size: small;
+                    a {
+                        color: #E4E8EB;
+                        font-size: medium;
+                        font-weight: 900;
+                        text-decoration: none;
+                        text-transform: none;
+
                     }
 
                     img {
@@ -89,8 +128,8 @@ padding: 0px;
 
     footer {
         display: flex;
-        flex: row;
-        gap: 10%;
+        flex-direction: row;
+        gap: 5%;
         padding: 2% 0 2% 0;
         bottom: 0;
         position: relative;
@@ -102,7 +141,7 @@ padding: 0px;
 
         a {
             text-decoration: none;
-            color: black;
+            color: #E4E8EB;
             border-radius: 50px;
             border-style: solid;
             border-width: 1px;
@@ -111,8 +150,9 @@ padding: 0px;
             border-color: transparent;
 
             &:hover {
-                border-color: black;
-                box-shadow: 0 0 0.5em black;
+                border-color: #E4E8EB;
+                box-shadow: 0 0 0.5em #E4E8EB;
+                box-shadow: inset 0 0 20px rgba(255, 255, 255, .5), 0 0 20px rgba(255, 255, 255, .2);
             }
         }
     }

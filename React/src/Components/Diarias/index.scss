@@ -20,15 +20,35 @@
         
             .divTexto {
                 width: 50%;
+                margin: auto;
+
+                p {
+                    width: 80%;
+                    margin: auto;
+                    font-family: 'Monoton', cursive;
+                    font-size: xx-large;
+                }
             }
     
             .divImage {
                 width: 50%;
     
+                .rock {
+                    max-width: 40%;
+                }
+
+                .Strokes {
+                    max-width: 40%;
+                }
+
+                .RadioHead {
+                    padding: 15% 0 15% 0;
+                }
+
                 img {
                     display: flex;
                     margin: auto;
-                    max-width: 90%;
+                    max-width: 60%;
                     border-radius: 8px;
                 }
             }

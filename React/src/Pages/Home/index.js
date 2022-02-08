@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import { Gallery } from '../../Components/Carousel';
-import { Destaque } from '../../Components/Destaque';
+import { Diarias } from '../../Components/Diarias';
 
 import './index.scss'
 
@@ -11,9 +11,9 @@ export function Home() {
         <div id="PageHome">
             <header>
                 <Link to="/">Home</Link>
-                <Link to="/about">Sobre</Link>
-                <Link to="/about">Sobre</Link>
-                <Link to="/about">Sobre</Link>
+                <a href="#">Destaques</a>
+                <a href="#">Diárias</a>
+                <a href="#">Login</a>
             </header>
             <main>
                 <div className='divTitle'>
@@ -23,7 +23,7 @@ export function Home() {
                 <div className='divTitle'>
                     <h1>POSTAGENS DIÁRIAS</h1>
                 </div>
-                <Destaque />
+                <Diarias />
             </main>
             <footer>
                 <a href="#">Termos</a>

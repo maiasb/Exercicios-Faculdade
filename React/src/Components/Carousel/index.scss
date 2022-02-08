@@ -1,11 +1,23 @@
 #divCarousel {
     margin-bottom: 5%;
+
+    img {
+        width: 250;
+        height: 250px;
+    }
+
+    .branco {
+        color: white;
+    }
+
+    .preto {
+        color: black;
+    }
     
     .titleImage {
         z-index: +1;
         position:absolute;
         margin-left: 5%;
         text-decoration: none;
-        color: white;
     }
 }
