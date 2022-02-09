@@ -28,24 +28,6 @@ export function Home() {
 
                 <Daily />
             </main>
-            <footer>
-                <LinkButton
-                    to="/#"
-                    text="Termos"
-                />
-                <LinkButton
-                    to="#"
-                    text="Siga-nos"
-                />
-                <LinkButton
-                    to="#"
-                    text="Contate-nos"
-                />
-                <LinkButton
-                    to="/about"
-                    text="Sobre"
-                />
-            </footer>
         </div>
     );
 }

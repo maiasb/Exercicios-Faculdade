@@ -135,12 +135,6 @@ export function Lolla() {
 
                 <TextBox />
             </main>
-            <footer>
-                <a href="#">Termos</a>
-                <a href="#">Siga-nos</a>
-                <a href="#">Contate-nos</a>
-                <Link to="/about">Sobre</Link>
-            </footer>
         </div>
     )
 }

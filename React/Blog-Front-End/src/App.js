@@ -10,6 +10,7 @@ import { RadioHead } from "./Pages/Posts/RadioHead/RadioHead.js"
 
 import { Header } from './Components/Header/Header'
 import { LinkButton } from './Components/LinkButton/LinkButton'
+import { Footer } from "./Components/Footer/Footer.js";
 
 import './App.scss'
 
@@ -35,6 +36,24 @@ function App() {
         <Route exact path="/radioHead" component={RadioHead}></Route>
         <Route exact path="/about" component={About}></Route>
       </Switch>
+      <Footer>
+        <LinkButton
+          to="/#"
+          text="Termos"
+        />
+        <LinkButton
+          to="#"
+          text="Siga-nos"
+        />
+        <LinkButton
+          to="#"
+          text="Contate-nos"
+        />
+        <LinkButton
+          to="/about"
+          text="Sobre"
+        />
+      </Footer>
     </BrowserRouter>
   );
 }
