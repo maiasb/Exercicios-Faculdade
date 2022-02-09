@@ -24,6 +24,14 @@ function App() {
         />
         <LinkButton
           to="#"
+          text="Imagens"
+        />
+        <LinkButton
+          to="#"
+          text="Criar Post"
+        />
+        <LinkButton
+          to="#"
           text="Login"
         />
       </Header>
