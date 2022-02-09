@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { DivTitle } from '../../Components/DivTitle/DivTitle';
 import { Title } from '../../Components/Title/Title';
 import { Gallery } from '../../Components/Carousel/Gallery';
-import { Diarias } from '../../Components/Diarias';
+import { Daily } from '../../Components/Daily/Daily';
 
 import './index.scss'
 
@@ -31,7 +31,8 @@ export function Home() {
                         Text="POSTAGENS DIÁRIAS"
                     />
                 </DivTitle>
-                <Diarias />
+
+                <Daily />
             </main>
             <footer>
                 <a href="#">Termos</a>

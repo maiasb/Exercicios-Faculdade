@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import PinkFloydImg from '../../../Contents/Img/pinkFloyd.jpg'
 import theStrokesLogo from '../../../Contents/Img/theStrokesLogo.png'
-import RadioHeadLogo from '../../../Contents/Img/RadioHeadLogo.png'
+import RadioHeadName from '../../../Contents/Img/RadioHeadName.png'
 
 import { DivTitle } from '../../../Components/DivTitle/DivTitle';
 import { Title } from '../../../Components/Title/Title';
@@ -81,7 +81,7 @@ export function PinkFloyd() {
                         </div>
                         <div className='itemRelacao'>
                             <Link to="/radioHead">
-                                <img src={RadioHeadLogo} alt="RadioHead" />
+                                <img src={RadioHeadName} alt="RadioHead" />
                             </Link>
                         </div>
                     </div>
