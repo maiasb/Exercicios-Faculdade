@@ -1,22 +1,16 @@
-import { Link } from 'react-router-dom';
 
+
+import { LinkButton } from '../../Components/LinkButton/LinkButton';
 import { DivTitle } from '../../Components/DivTitle/DivTitle';
 import { Title } from '../../Components/Title/Title';
 import { Gallery } from '../../Components/Carousel/Gallery';
 import { Daily } from '../../Components/Daily/Daily';
 
-import './index.scss'
+import './Home.scss'
 
 export function Home() {
-
     return (
         <div id="PageHome">
-            <header>
-                <Link to="/">Home</Link>
-                <a href="#">Destaques</a>
-                <a href="#">Diárias</a>
-                <a href="#">Login</a>
-            </header>
             <main>
                 <DivTitle>
                     <Title
@@ -35,10 +29,22 @@ export function Home() {
                 <Daily />
             </main>
             <footer>
-                <a href="#">Termos</a>
-                <a href="#">Siga-nos</a>
-                <a href="#">Contate-nos</a>
-                <Link to="/about">Sobre</Link>
+                <LinkButton
+                    to="/#"
+                    text="Termos"
+                />
+                <LinkButton
+                    to="#"
+                    text="Siga-nos"
+                />
+                <LinkButton
+                    to="#"
+                    text="Contate-nos"
+                />
+                <LinkButton
+                    to="/about"
+                    text="Sobre"
+                />
             </footer>
         </div>
     );

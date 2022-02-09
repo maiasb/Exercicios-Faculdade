@@ -4,18 +4,12 @@ import { DivTitle } from '../../Components/DivTitle/DivTitle';
 import { Title } from '../../Components/Title/Title';
 import { TextBox } from '../../Components/txtComments';
 
-import './index.scss'
+import './About.scss'
 
 export function About() {
 
     return (
         <div id="PageAbout">
-            <header>
-                <Link to="/">Home</Link>
-                <Link to="/about">Destaques</Link>
-                <Link to="/about">Diárias</Link>
-                <Link to="/about">Login</Link>
-            </header>
             <main>
                 <DivTitle>
                     <Title

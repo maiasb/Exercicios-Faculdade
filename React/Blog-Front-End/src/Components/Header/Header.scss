@@ -1,0 +1,14 @@
+header {
+    display: flex;
+    flex: row;
+    gap: 15%;
+    top: 0;
+    height: 10%;
+    width: 100%;
+    position: fixed;
+    background-color: black;
+    z-index: 999;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}

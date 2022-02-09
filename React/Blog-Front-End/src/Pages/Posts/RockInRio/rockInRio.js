@@ -13,12 +13,6 @@ import "./rockInRio.scss"
 export function RockInRio() {
     return (
         <div className="divPost">
-            <header>
-                <Link to="/">Home</Link>
-                <a href="#">Destaques</a>
-                <a href="#">Diárias</a>
-                <a href="#">Login</a>
-            </header>
             <main>
                 <div className='divMain'>
                     <div className='divPost'>
