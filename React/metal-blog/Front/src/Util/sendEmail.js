@@ -1,8 +1,7 @@
 
 import { api } from "../Services/api";
 
-// const url = process.env.REACT_APP_API;
-const url = "email/send"
+const url = process.env.REACT_APP_API;
 
 export async function sendEmail(text) {
 

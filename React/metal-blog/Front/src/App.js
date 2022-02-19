@@ -14,6 +14,8 @@ import { Footer } from "./Components/Footer/Footer.js";
 
 import './App.scss'
 
+import { signIn } from './Util/signIn'
+
 function App() {
   return (
     <BrowserRouter>
@@ -28,11 +30,12 @@ function App() {
         />
         <LinkButton
           to="#"
-          text="Criar Post"
+          text="Login"
+          onClick={signIn}
         />
         <LinkButton
           to="#"
-          text="Login"
+          text="Cadastro"
         />
       </Header>
       <Switch>

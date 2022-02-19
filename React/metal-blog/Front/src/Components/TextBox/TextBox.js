@@ -20,7 +20,6 @@ export function TextBox() {
         <div id="divTxt" >
             <Toaster />
             <textarea onChange={event => setComment(event.target.value)}>
-                {comment}
             </textarea>
             <div className="divButton">
                 <DefaultButton onClick={takeComment}>Enviar</DefaultButton>
