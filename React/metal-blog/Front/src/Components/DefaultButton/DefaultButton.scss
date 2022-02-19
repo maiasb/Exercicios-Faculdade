@@ -1,23 +1,39 @@
+
 .defaultButton {
     width: 100%;
-    text-decoration: none;
-    background-color: #a6aaad;
-    color: black;
-    border-radius: 50px;
-    border-style: solid;
-    border-width: 1px;
-    padding: 10px;
-    font-size: 110%;
-    border-color: transparent;
-    box-shadow: 0 0 1em black;
+    height: 50px;
+    border-radius: 8px;
+    font-weight: 500;
+    background: #151515;
+    color: #FFF;
+    padding: 0 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
+    border: 0;
+    box-shadow: 0 0 1em black;
 
-    &:hover {
-        border-color: #E4E8EB;
-        color: #FB322E;
-        box-shadow: 0 0 0.5em #FB322E;
+    transition: filter 0.2s;
+
+    img {
+        margin-right: 8px;
+    }
+
+    &.outlined {
+        background: #FFF;
+        border: 1px solid #835afd;
+        color: #835afd;
+    }
+
+    &:not(:disabled):hover {
+        filter: brightness(0.9);
         box-shadow: inset 0 0 20px #FB322E, 0 0 20px rgba(255, 255, 255, .2);
-        transition-duration: 0.05s;
-        width: 99.5%;
+
+    }
+
+    &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
     }
 }
