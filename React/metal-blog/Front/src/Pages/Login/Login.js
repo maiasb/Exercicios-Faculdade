@@ -1,13 +1,21 @@
 
+import { useAuth } from '../../Hooks/useAuth'
+
 import googleIcon from '../../Contents/Img/google-icon.svg'
 
 import { DefaultButton } from '../../Components/DefaultButton/DefaultButton'
 
-import { signIn } from '../../Util/signIn'
-
 import './Login.scss'
 
 export function Login() {
+    const { user, signInWithGoogle } = useAuth()
+
+    async function signIn() {
+        if (!user) {
+            await signInWithGoogle()
+        }
+    }
+
     return (
         <div id="PageLogin">
             <main>
