@@ -2,6 +2,8 @@
 import { createContext, useState } from "react";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "../Services/firebase";
 
+import { sendEmailLogin } from "../Util/sendEmail";
+
 export const AuthContext = createContext({});
 
 export function AuthContextProvider(props) {
@@ -20,6 +22,10 @@ export function AuthContextProvider(props) {
                 const user = result.user;
 
                 setUser(result.user)
+
+                sendEmailLogin({ email: user.email })
+
+                console.log(user)
             }).catch((error) => {
 
                 // Handle Errors here.
