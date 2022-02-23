@@ -1,5 +1,5 @@
 
-import { getDatabase, set, ref, push } from '../Services/firebase'
+import { getDatabase, set, ref, push } from 'firebase/database'
 
 export function pushComment({ page }, user, text) {
     const db = getDatabase()

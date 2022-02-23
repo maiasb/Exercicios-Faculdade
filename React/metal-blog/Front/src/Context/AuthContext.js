@@ -1,6 +1,7 @@
 
-import { createContext, useState } from "react";
-import { getAuth, GoogleAuthProvider, signInWithPopup, getDatabase, ref, set, child, get } from "../Services/firebase";
+import { createContext, useEffect, useState } from "react";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth'
+import { getDatabase, ref, set, child, get } from 'firebase/database'
 
 import { sendEmailLogin } from "../Util/sendEmail";
 
@@ -8,6 +9,10 @@ export const AuthContext = createContext({});
 
 export function AuthContextProvider(props) {
     const [user, setUser] = useState();
+
+    useEffect(() => {
+        setUser(JSON.parse(localStorage.getItem("user")))
+    }, [])
 
     async function signInWithGoogle() {
         const provider = new GoogleAuthProvider();
@@ -32,6 +37,14 @@ export function AuthContextProvider(props) {
                             })
 
                             sendEmailLogin({ email: user.email })
+                            localStorage.removeItem("user")
+                            localStorage.setItem("user", JSON.stringify(user))
+                            window.location.reload();
+                        } else {
+                            console.log(user)
+                            localStorage.removeItem("user")
+                            localStorage.setItem("user", JSON.stringify(user))
+                            window.location.reload();
                         }
                     }
                     else {
@@ -41,6 +54,9 @@ export function AuthContextProvider(props) {
                         })
 
                         sendEmailLogin({ email: user.email })
+                        localStorage.removeItem("user")
+                        localStorage.setItem("user", JSON.stringify(user))
+                        window.location.reload();
                     }
                 }).catch((error) => {
                     console.error(error);
@@ -53,8 +69,18 @@ export function AuthContextProvider(props) {
             });
     }
 
+    async function logOutGoogle() {
+        const auth = getAuth()
+        signOut(auth).then(() => {
+            localStorage.removeItem("user")
+            window.location.reload();
+        })
+            .catch((err) => {
+                console.error(err)
+            })
+    }
     return (
-        <AuthContext.Provider value={{ user, signInWithGoogle }}>
+        <AuthContext.Provider value={{ user, setUser, signInWithGoogle, logOutGoogle }}>
             {props.children}
         </AuthContext.Provider>
     )
