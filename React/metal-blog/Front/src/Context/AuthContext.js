@@ -1,6 +1,6 @@
 
 import { createContext, useState } from "react";
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "../Services/firebase";
+import { getAuth, GoogleAuthProvider, signInWithPopup, getDatabase, ref, set, child, get } from "../Services/firebase";
 
 import { sendEmailLogin } from "../Util/sendEmail";
 
@@ -15,25 +15,40 @@ export function AuthContextProvider(props) {
         const auth = getAuth();
         signInWithPopup(auth, provider)
             .then((result) => {
-                // This gives you a Google Access Token. You can use it to access the Google API.
                 const credential = GoogleAuthProvider.credentialFromResult(result);
                 const token = credential.accessToken;
-                // The signed-in user info.
                 const user = result.user;
-
                 setUser(result.user)
 
-                sendEmailLogin({ email: user.email })
+                const db = getDatabase()
 
-                console.log(user)
+                const dbRef = ref(getDatabase());
+                get(child(dbRef, `users/`)).then((snapshot) => {
+                    if (snapshot.exists()) {
+                        if (!snapshot.val()[user.uid]) {
+                            set(ref(db, 'users/' + user.uid), {
+                                userName: user.displayName,
+                                userEmail: user.email
+                            })
+
+                            sendEmailLogin({ email: user.email })
+                        }
+                    }
+                    else {
+                        set(ref(db, 'users/' + user.uid), {
+                            userName: user.displayName,
+                            userEmail: user.email
+                        })
+
+                        sendEmailLogin({ email: user.email })
+                    }
+                }).catch((error) => {
+                    console.error(error);
+                });
             }).catch((error) => {
-
-                // Handle Errors here.
                 var errorCode = error.code;
                 var errorMessage = error.message;
-                // The email of the user's account used.
                 var email = error.email;
-                // The firebase.auth.AuthCredential type that was used.
                 var credential = error.credential;
             });
     }

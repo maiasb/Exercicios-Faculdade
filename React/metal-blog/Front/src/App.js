@@ -17,8 +17,6 @@ import { Footer } from "./Components/Footer/Footer.js";
 
 import './App.scss'
 
-// import { signIn } from './Util/signIn'
-
 function App() {
   return (
     <BrowserRouter>

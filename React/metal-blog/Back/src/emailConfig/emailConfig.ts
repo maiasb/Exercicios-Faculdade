@@ -10,5 +10,4 @@ export const sender = nodemailer.createTransport({
         user: process.env.APP_EMAIL_SMTP,
         pass: process.env.APP_PASSWORD_EMAIL_SMTP
     }
-
 })

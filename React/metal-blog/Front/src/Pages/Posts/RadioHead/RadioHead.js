@@ -55,7 +55,9 @@ export function RadioHead() {
                                 />
                             </DivTitle>
 
-                            <TextBox />
+                            <TextBox
+                                page='radioHead'
+                            />
                         </div>
                     </div>
                     <div className='divRelacao'>

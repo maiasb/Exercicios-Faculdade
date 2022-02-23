@@ -71,7 +71,9 @@ export function TheStrokes() {
                                 />
                             </DivTitle>
 
-                            <TextBox />
+                            <TextBox
+                                page='theStrokes'
+                            />
                         </div>
                     </div>
                     <div className='divRelacao'>

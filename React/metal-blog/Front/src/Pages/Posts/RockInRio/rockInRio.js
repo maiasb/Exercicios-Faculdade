@@ -139,7 +139,9 @@ export function RockInRio() {
                     />
                 </DivTitle>
 
-                <TextBox />
+                <TextBox
+                    page='rockInRio'
+                />
             </main>
         </div>
     )

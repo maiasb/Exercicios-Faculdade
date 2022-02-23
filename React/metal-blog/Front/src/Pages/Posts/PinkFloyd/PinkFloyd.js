@@ -63,7 +63,9 @@ export function PinkFloyd() {
                                 />
                             </DivTitle>
 
-                            <TextBox />
+                            <TextBox
+                                page='pinkFloyd'
+                            />
                         </div>
                     </div>
                     <div className='divRelacao'>

@@ -2,14 +2,14 @@
 import { sender } from "../emailConfig/emailConfig";
 import nodemailer from 'nodemailer';
 
-export async function sendEmailLogin(email: string) {
+export async function sendEmailComment(email: string, text: string) {
     try {
         let response = await sender.sendMail({
-            from: '"Opaaaaa🚀😍" <progavancadaavaliacao@gmail.com>',
+            from: '"Você nos notou 🚀😍" <progavancadaavaliacao@gmail.com>',
             to: email,
             subject: 'E-mail automático (AVALIAÇÃO)',
-            text: `Obrigado por se cadastrar. Seja bem-vindo(a) 😊 \n
-            Este e-mail é enviado automaticamente aos nosso inscritos, então, não precisa responder 😊`
+            text: `Obrigado por nos enviar seu comentário. Levaremos em conta cada palavra. 😊 \n
+            Seu comentário: ${text}`
         })
 
         console.log("Message sent: %s", response.messageId);

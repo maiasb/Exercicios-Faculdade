@@ -1,21 +1,22 @@
 
-import { useAuth } from '../../Hooks/useAuth'
-
 import { useState } from "react"
 import toast, { Toaster } from 'react-hot-toast';
 
+import { useAuth } from '../../Hooks/useAuth'
 import { DefaultButton } from "../DefaultButton/DefaultButton"
 
-// import { sendEmail } from "../../Util/sendEmail"
+import { pushComment } from "../../Util/pushComment";
+import { sendEmailComment } from '../../Util/sendEmailComment';
 
 import "./TextBox.scss"
 
-export function TextBox() {
+export function TextBox(page) {
     const { user } = useAuth()
     const [comment, setComment] = useState('')
 
     function takeComment() {
-        // sendEmail({ email: user.email, text: comment })
+        pushComment(page, user, comment)
+        sendEmailComment({ email: user.email, text: comment })
         toast.success('Comentário enviado!')
     }
 

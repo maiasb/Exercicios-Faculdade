@@ -133,7 +133,9 @@ export function Lolla() {
                     />
                 </DivTitle>
 
-                <TextBox />
+                <TextBox
+                    page='lolla'
+                />
             </main>
         </div>
     )

@@ -4,8 +4,11 @@ import { Title } from '../../Components/Title/Title';
 import { TextBox } from '../../Components/TextBox/TextBox';
 
 import './About.scss'
+import { useAuth } from '../../Hooks/useAuth';
+import { Comments } from '../../Components/Comments/Comments';
 
 export function About() {
+    const { user } = useAuth()
 
     return (
         <div id="PageAbout">
@@ -37,12 +40,18 @@ export function About() {
                     Buscamos entregar notícias diárias sobre o mundo do rock e eventos que ainda é possível se ouvir uma boa música (Mesmo nesses casos o rock está ameaçado)
                     , visando atualizar os bons ouvintes sobre tais conteúdos, como novos albuns lançados por sua banda favorita ou mesmo curiosidades sobre aquelas clássicas que não cansamos de ouvir.
                 </p>
+                <Comments
+                    id={user ? user.uid : 0}
+                    page="about"
+                />
                 <DivTitle>
                     <Title
                         Text="Nos dê sua opinião"
                     />
                 </DivTitle>
-                <TextBox />
+                <TextBox
+                    page="about"
+                />
             </main>
         </div>
     );
